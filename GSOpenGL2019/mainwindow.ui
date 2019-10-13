@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>1047</width>
+    <height>788</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Visualisering og Simulering - 2019</string>
+  </property>
+  <widget class="QWidget" name="centralWidget">
+   <layout class="QVBoxLayout" name="verticalLayout">
+    <item>
+     <layout class="QVBoxLayout" name="OpenGLLayout"/>
+    </item>
+   </layout>
+  </widget>
+  <widget class="QMenuBar" name="menuBar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>1047</width>
+     <height>20</height>
+    </rect>
+   </property>
+   <widget class="QMenu" name="menuLevels">
+    <property name="title">
+     <string>Levels</string>
+    </property>
+    <addaction name="actionLevel_1"/>
+    <addaction name="actionLevel_2"/>
+   </widget>
+   <widget class="QMenu" name="menuDisplay">
+    <property name="title">
+     <string>Display</string>
+    </property>
+    <addaction name="actionAxis"/>
+    <addaction name="separator"/>
+    <addaction name="actionToggle_Wireframe"/>
+    <addaction name="separator"/>
+    <addaction name="actionSmooth_Terrain"/>
+   </widget>
+   <widget class="QMenu" name="menuGame">
+    <property name="title">
+     <string>Game</string>
+    </property>
+    <addaction name="actionStart"/>
+    <addaction name="actionStop"/>
+    <addaction name="actionRestart"/>
+   </widget>
+   <widget class="QMenu" name="menuHelp">
+    <property name="title">
+     <string>Help</string>
+    </property>
+    <addaction name="actionControls"/>
+    <addaction name="separator"/>
+    <addaction name="actionReset_Player"/>
+   </widget>
+   <widget class="QMenu" name="menuCamera">
+    <property name="title">
+     <string>Camera</string>
+    </property>
+    <addaction name="actionView_1"/>
+    <addaction name="actionView_2"/>
+    <addaction name="actionView_3"/>
+   </widget>
+   <addaction name="menuLevels"/>
+   <addaction name="menuCamera"/>
+   <addaction name="menuDisplay"/>
+   <addaction name="menuGame"/>
+   <addaction name="menuHelp"/>
+  </widget>
+  <widget class="QToolBar" name="mainToolBar">
+   <attribute name="toolBarArea">
+    <enum>TopToolBarArea</enum>
+   </attribute>
+   <attribute name="toolBarBreak">
+    <bool>false</bool>
+   </attribute>
+  </widget>
+  <widget class="QStatusBar" name="statusBar"/>
+  <action name="actionAxis">
+   <property name="text">
+    <string>Axis/Curve</string>
+   </property>
+  </action>
+  <action name="actionLevel_1">
+   <property name="text">
+    <string>Level 1</string>
+   </property>
+  </action>
+  <action name="actionLevel_2">
+   <property name="text">
+    <string>Level 2</string>
+   </property>
+  </action>
+  <action name="actionToggle_Wireframe">
+   <property name="text">
+    <string>Toggle Wireframe</string>
+   </property>
+  </action>
+  <action name="actionStart">
+   <property name="text">
+    <string>Start</string>
+   </property>
+  </action>
+  <action name="actionStop">
+   <property name="text">
+    <string>Pause</string>
+   </property>
+  </action>
+  <action name="actionRestart">
+   <property name="text">
+    <string>Restart</string>
+   </property>
+  </action>
+  <action name="actionSmooth_Terrain">
+   <property name="text">
+    <string>Smooth Terrain</string>
+   </property>
+  </action>
+  <action name="actionControls">
+   <property name="text">
+    <string>Controls</string>
+   </property>
+  </action>
+  <action name="actionReset_Player">
+   <property name="text">
+    <string>Reset Player</string>
+   </property>
+  </action>
+  <action name="actionView_1">
+   <property name="text">
+    <string>View 1</string>
+   </property>
+  </action>
+  <action name="actionView_2">
+   <property name="text">
+    <string>View 2</string>
+   </property>
+  </action>
+  <action name="actionView_3">
+   <property name="text">
+    <string>View 3</string>
+   </property>
+  </action>
+ </widget>
+ <layoutdefault spacing="6" margin="11"/>
+ <resources/>
+ <connections/>
+</ui>

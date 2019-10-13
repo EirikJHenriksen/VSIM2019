@@ -1,0 +1,26 @@
+#ifndef MATHLAB_H
+#define MATHLAB_H
+
+#include "vector2d.h"
+#include "vector3d.h"
+#include "vector4d.h"
+#include "matrix4x4.h"
+
+namespace MathLab
+{
+// CONSTANTS
+    constexpr double PI = 3.141592653589793238462643383279502884197169399375105820974944592307816406286208998628034825342117067982148086513282306647093844609550582231725359408128481117450284102701938521105559644622948954930381964428810975665933446128475648233f;
+
+
+// FUNCTIONS
+inline double abs(double input)
+{
+    if (input < 0.f)
+        input *= -1.f;
+    return input;
+}
+
+}
+
+
+#endif // MATHLAB_H
