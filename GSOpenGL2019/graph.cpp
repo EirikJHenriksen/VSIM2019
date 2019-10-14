@@ -6,7 +6,7 @@
 graph::graph(bool itDoesNothing)
 {
     // Loads LAS information from a txt-file!!!
-    loadLASData("D:/Eirik/Documents/MapData/LAS/godoynes_simplified.txt");
+    loadLASData("../GSOpenGL2019/Data/MapData/godoynes_simplified.txt");
 
     mMatrix.setToIdentity();
 }
