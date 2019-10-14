@@ -292,7 +292,7 @@ float graph::findTargetHeight(gs2019::Vector3D location)
         Vec2 coordinates{location.x, location.z};
         int TriangleID = findTriangleIndices(coordinates);
 
-        qDebug() << "TRIANGLE ID: " << TriangleID;
+        //qDebug() << "TRIANGLE ID: " << TriangleID;
 
         if (TriangleID != (-1))
         {
@@ -304,7 +304,7 @@ float graph::findTargetHeight(gs2019::Vector3D location)
                                                                                          Vec2(vertexB.x, vertexB.z),
                                                                                          Vec2(vertexC.x, vertexC.z));
 
-            heightWeight.debugPrint();
+            //heightWeight.debugPrint();
 
             heightCalculation = ((vertexC.y * heightWeight.z) + (vertexB.y * heightWeight.y) + (vertexA.y * heightWeight.x));
 
