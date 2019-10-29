@@ -6,6 +6,8 @@ CONFIG      += c++11
 TARGET      = 3D-programmering
 
 SOURCES += main.cpp \
+    Npc.cpp \
+    bsplinecurve.cpp \
     renderwindow.cpp \
     shader.cpp \
     mainwindow.cpp \
@@ -34,6 +36,8 @@ SOURCES += main.cpp \
     collisionaabb.cpp
 
 HEADERS += \
+    Npc.h \
+    bsplinecurve.h \
     renderwindow.h \
     shader.h \
     mainwindow.h \

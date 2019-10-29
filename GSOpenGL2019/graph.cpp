@@ -6,7 +6,9 @@
 graph::graph(bool itDoesNothing)
 {
     // Loads LAS information from a txt-file!!!
-    loadLASData("../GSOpenGL2019/Data/MapData/godoynes_simplified.txt");
+    //loadLASData("../GSOpenGL2019/Data/MapData/godoynes_simplified.txt");
+
+    buildGrid(64, 100.f, 1.f, 100.f, -1.5f);
 
     mMatrix.setToIdentity();
 }
@@ -237,7 +239,7 @@ void graph::buildGrid(int subdivisions, float sizeX , float sizeY, float sizeZ, 
 
     locateNeighbours();
 
-    applyHeightFunction();
+    //applyHeightFunction();
 
     mMatrix.setToIdentity();
 }

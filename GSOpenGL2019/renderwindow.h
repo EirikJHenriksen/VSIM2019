@@ -59,10 +59,6 @@ public:
 
     void smoothTerrain();
 
-    void startGame();
-    void pauseGame();
-    void restartGame();
-
     void resetPlayer();
 
     int currentScene = 1;
@@ -106,34 +102,21 @@ private:
     VisualObject* interObj = nullptr;
     VisualObject* impactObj = nullptr;
     BezierCurve* path = nullptr;
-    VisualObject* pathObj = nullptr;
-    VisualObject* doorObj = nullptr;
-    VisualObject* gateObj = nullptr;
     graph* terrainObj = nullptr;
-    VisualObject* ScoreBoardPtr = nullptr;
 
-    VisualObject* trophy01 = nullptr;
-    VisualObject* trophy02 = nullptr;
-    VisualObject* trophy03 = nullptr;
-    VisualObject* trophy04 = nullptr;
 
-    VisualObject* enemy = nullptr;
+    // Important/dynamic objects (VSIM):
 
-    // "Game" Varables
-    gs2019::Vector3D trophyLoc01;
-    gs2019::Vector3D trophyLoc02;
-    gs2019::Vector3D trophyLoc03;
-    gs2019::Vector3D trophyLoc04;
+    VisualObject* mSpiller{nullptr};
+    VisualObject* mFiende{nullptr};
 
-    int trophyCounter = 0;
+    Vec3 mStartpunkt;
+    Vec3 mSluttpunkt;
 
-    bool trophy01Taken = false;
-    bool trophy02Taken = false;
-    bool trophy03Taken = false;
-    bool trophy04Taken = false;
-
-    bool locationLock = false;
-    bool playerCollided = false;
+    VisualObject* mStjerne01{nullptr};
+    VisualObject* mStjerne02{nullptr};
+    VisualObject* mStjerne03{nullptr};
+    VisualObject* mStjerne04{nullptr};
 
     // Rendering
     bool displayWireframe = false;
@@ -143,7 +126,7 @@ private:
 
     Shader* mShaderProgram[5]{nullptr};
 
-    Texture* mTexture[5]{nullptr};
+    Texture* mTexture[10]{nullptr};
 
     GLint  mMatrixUniform{-1};
     GLint  mPMatrixUniform{-1};

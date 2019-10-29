@@ -114,17 +114,17 @@ void MainWindow::on_actionLevel_2_triggered()
 
 void MainWindow::on_actionStart_triggered()
 {
-    mRenderWindow->startGame();
+    //mRenderWindow->startGame();
 }
 
 void MainWindow::on_actionStop_triggered()
 {
-    mRenderWindow->pauseGame();
+    //mRenderWindow->pauseGame();
 }
 
 void MainWindow::on_actionRestart_triggered()
 {
-    mRenderWindow->restartGame();
+    //mRenderWindow->restartGame();
 }
 
 void MainWindow::on_actionReset_Player_triggered()

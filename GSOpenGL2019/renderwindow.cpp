@@ -121,6 +121,8 @@ void RenderWindow::init()
     mTexture[2] = new Texture("../GSOpenGL2019/Data/Textures/Trollface.png", 2);
     mTexture[3] = new Texture("../GSOpenGL2019/Data/Textures/GameSheet.gif", 3);
     mTexture[4] = new Texture("../GSOpenGL2019/Data/Textures/Doughnut.png", 4);
+    mTexture[5] = new Texture("../GSOpenGL2019/Data/Textures/HeliSpiller.png", 5);
+    mTexture[6] = new Texture("../GSOpenGL2019/Data/Textures/HeliFiende.png", 6);
 
     glActiveTexture(GL_TEXTURE0);
     glBindTexture(GL_TEXTURE_2D, mTexture[0]->id());
@@ -137,50 +139,23 @@ void RenderWindow::init()
     glActiveTexture(GL_TEXTURE4);
     glBindTexture(GL_TEXTURE_2D, mTexture[4]->id());
 
+    glActiveTexture(GL_TEXTURE5);
+    glBindTexture(GL_TEXTURE_2D, mTexture[5]->id());
+
+    glActiveTexture(GL_TEXTURE6);
+    glBindTexture(GL_TEXTURE_2D, mTexture[6]->id());
+
     // =====================================================
     // ++++++++++++++++++++|Makes objects|++++++++++++++++++++++
     // =====================================================
-    //VisualObject* Ground = new TriangleSurface("Ground", "../GSOpenGL2019/Data/Models/Ground.nei", Vec3(0.f, 0.f, 0.f), Vec3(0.f, 0.f, 0.f), 0.f, Vec3(1.f, 1.f, 1.f), false, false, false);
-    //VisualObject* TheWall = new TriangleSurface("Wall_01", "../GSOpenGL2019/Data/Models/TheWall.nei", Vec3(0.f, 0.f, 0.f), Vec3(0.f, 0.f, 0.f), 0.f, Vec3(1.f, 1.f, 1.f), false, false, false);
-
-    //VisualObject* WallLeft = new TriangleSurface("Box", "../GSOpenGL2019/Data/Models/Cube.nei", Vec3(10.5f, -2.f, 0.f), Vec3(0.f, 0.f, 0.f), 0.f, Vec3(1.f, 5.f, 20.f), false, false, true);
-    //VisualObject* WallRight = new TriangleSurface("Box", "../GSOpenGL2019/Data/Models/Cube.nei", Vec3(-10.5f, -2.f, 0.f), Vec3(0.f, 0.f, 0.f), 0.f, Vec3(1.f, 5.f, 20.f), false, false, true);
-    //VisualObject* WallTop = new TriangleSurface("Box", "../GSOpenGL2019/Data/Models/Cube.nei", Vec3(-1.f, -2.f, -10.5f), Vec3(0.f, 0.f, 0.f), 0.f, Vec3(18.f, 5.f, 1.f), false, false, true);
-    //VisualObject* WallBottom = new TriangleSurface("Box", "../GSOpenGL2019/Data/Models/Cube.nei", Vec3(0.f, -2.f, 10.5f), Vec3(0.f, 0.f, 0.f), 0.f, Vec3(20.f, 5.f, 1.f), false, false, true);
-
-
-    //VisualObject* TheOtherWall = new TriangleSurface("Wall_02", "../GSOpenGL2019/Data/Models/TheOtherWall.nei", Vec3(0.f, 0.f, 0.f), Vec3(0.f, 0.f, 0.f), 0.f, Vec3(1.f, 1.f, 1.f), false, false, false);
-    //VisualObject* Building = new TriangleSurface("House", "../GSOpenGL2019/Data/Models/Building.nei", Vec3(6.f, 0.f, -4.f), Vec3(0.f, 0.f, 0.f), 0.f, Vec3(1.f, 1.f, 1.f), false, false, false);
-    VisualObject* Door = new TriangleSurface("House_Door", "../GSOpenGL2019/Data/Models/Door.nei", Vec3(5.f, 0.f, -1.f), Vec3(0.f, 0.f, 0.f), 0.f, Vec3(1.f, 1.f, 1.f), false, false, false);
-    //VisualObject* Tree1 = new TriangleSurface("Tree_01", "../GSOpenGL2019/Data/Models/Tree.nei", Vec3(-8.f, 0.f, 0.f), Vec3(0.f, 0.f, 0.f), 90.f, Vec3(2.f, 2.f, 2.f), false, false, true);
-    //VisualObject* Tree2 = new TriangleSurface("Tree_02", "../GSOpenGL2019/Data/Models/Tree.nei", Vec3(-6.f, 0.f, -6.f), Vec3(0.f, 0.f, 0.f), 0.f, Vec3(3.f, 3.f, 3.f), false, false, true);
-    //VisualObject* Tree3 = new TriangleSurface("Tree_03", "../GSOpenGL2019/Data/Models/Tree.nei", Vec3(-1.f, 0.f, -7.f), Vec3(0.f, 0.f, 0.f), 0.f, Vec3(1.5f, 1.5f, 1.5f), false, false, true);
-    //VisualObject* Tree4 = new TriangleSurface("Tree_04", "../GSOpenGL2019/Data/Models/Tree.nei", Vec3(8.f, 0.f, 8.f), Vec3(0.f, 0.f, 0.f), 0.f, Vec3(1.5f, 1.5f, 1.5f), false, false, true);
-    //VisualObject* Tree5 = new TriangleSurface("Tree_05", "../GSOpenGL2019/Data/Models/Tree.nei", Vec3(-8.f, 0.f, 7.f), Vec3(0.f, 0.f, 0.f), 0.f, Vec3(2.f, 2.f, 2.f), false, false, true);
-    //VisualObject* Flag = new TriangleSurface("Flag", "../GSOpenGL2019/Data/Models/Flag.nei", Vec3(0.f, 0.f, -5.f), Vec3(0.f, 0.f, 0.f), 0.f, Vec3(1.f, 1.f, 1.f), false, false, true);
-
-
-    trophyLoc01 = Vec3(-5.f, 0.f, 5.f);
-    trophyLoc02 = Vec3(2.f, 0.f, -8.f);
-    trophyLoc03 = Vec3(-7.f, 0.f, -7.f);
-    trophyLoc04 = Vec3(9.f, 0.f, 0.f);
-
-    VisualObject* Box1 = new TriangleSurface("Box", "../GSOpenGL2019/Data/Models/Cube.nei", trophyLoc01, Vec3(0.f, 0.f, 0.f), 0.f, Vec3(1.f, 1.f, 1.f), true, false, false);
-    VisualObject* Box2 = new TriangleSurface("Box", "../GSOpenGL2019/Data/Models/Cube.nei", trophyLoc02, Vec3(0.f, 0.f, 0.f), 0.f, Vec3(1.f, 1.f, 1.f), true, false, false);
-    VisualObject* Box3 = new TriangleSurface("Box", "../GSOpenGL2019/Data/Models/Cube.nei", trophyLoc03, Vec3(0.f, 0.f, 0.f), 0.f, Vec3(1.f, 1.f, 1.f), true, false, false);
-    VisualObject* Box4 = new TriangleSurface("Box", "../GSOpenGL2019/Data/Models/Cube.nei", trophyLoc04, Vec3(0.f, 0.f, 0.f), 0.f, Vec3(1.f, 1.f, 1.f), true, false, false);
-
-    VisualObject* Gate = new TriangleSurface("Gate", "../GSOpenGL2019/Data/Models/Plane.nei", Vec3(9.f, 0.5f, -10.f), Vec3(0.f, 0.f, 0.f), 0.f, Vec3(1.f, 1.f, 1.f), false, false, true);
-
-    VisualObject* Terreng = new TriangleSurface("Gate", "../GSOpenGL2019/Data/Models/landskap.nei", Vec3(0.f, 0.f, 0.f), Vec3(0.f, 0.f, 0.f), 0.f, Vec3(1.f, 1.f, 1.f), false, false, false);
 
     // ================ TERRAIN GRAPH ================
     graph* TerrainGraph = new graph(true);
     // =======================================================
 
-    BezierCurve* Curve = new BezierCurve(trophyLoc03, trophyLoc01, trophyLoc02, trophyLoc04, 3, 100, true, true);
+    //BezierCurve* Curve = new BezierCurve(trophyLoc03, trophyLoc01, trophyLoc02, trophyLoc04, 3, 100, true, true);
     VisualObject* ThePyramid = new TriangleSurface("Moving_Pyramid", "../GSOpenGL2019/Data/Models/Pyramid.nei", Vec3(0.f, 0.f, 0.f), Vec3(0.f, 0.f, 0.f), 0.f, Vec3(1.f, 1.f, 1.f), false, false, false);
-    DebugObjects.push_back(Curve);
+    //DebugObjects.push_back(Curve);
 
     //VisualObject* IndoorsTetrahedron= new TriangleSurface("Tetrahedron", "../GSOpenGL2019/Data/Models/Tetrahedron.nei", Vec3(6.f, 0.f, -4.f), Vec3(0.f, 0.f, 0.f), 0.f, Vec3(1.f, 1.f, 1.f), true, true, false);
 
@@ -193,9 +168,33 @@ void RenderWindow::init()
     // OBJ-Objects
     //VisualObject* Doughnut = new ObjMesh("Doughnut", "../GSOpenGL2019/Data/Models/Doughnut.obj", Vec3(3.f, 1.f, 0.f), Vec3(0.f, 0.f, 1.f), 10.f, Vec3(1.f, 1.f, 1.f), true, true);
 
-    // Billboard
-    VisualObject* ScoreBoard = new Billboard("Scoreboard", Vec3(0.f, 3.f, -10.f), Vec3(3.f, 3.f, 3.f));
+    // ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    // [VSIM TING!!!]
+    VisualObject* Spiller = new ObjMesh("SpillerHelikopter", "../GSOpenGL2019/Data/Models/Helikopter.obj", Vec3(-3.f, 5.f, 0.f), Vec3(0.f, 0.f, 1.f), 0.f, Vec3(1.f, 1.f, 1.f), false, false);
+    VisualObject* Fiende = new ObjMesh("FiendeHelikopter", "../GSOpenGL2019/Data/Models/Helikopter.obj", Vec3(3.f, 1.f, 10.f), Vec3(0.f, 0.f, 1.f), 0.f, Vec3(1.f, 1.f, 1.f), false, false);
 
+    VisualObject* Stjerne01 = new ObjMesh("Sjerne01", "../GSOpenGL2019/Data/Models/Star.obj", Vec3(5.f, 5.f, 5.f), Vec3(0.f, 0.f, 1.f), 0.f, Vec3(1.f, 1.f, 1.f), true, false);
+    VisualObject* Stjerne02 = new ObjMesh("Sjerne01", "../GSOpenGL2019/Data/Models/Star.obj", Vec3(5.f, 5.f, 5.f), Vec3(0.f, 0.f, 1.f), 0.f, Vec3(1.f, 1.f, 1.f), true, false);
+    VisualObject* Stjerne03 = new ObjMesh("Sjerne01", "../GSOpenGL2019/Data/Models/Star.obj", Vec3(5.f, 5.f, 5.f), Vec3(0.f, 0.f, 1.f), 0.f, Vec3(1.f, 1.f, 1.f), true, false);
+    VisualObject* Stjerne04 = new ObjMesh("Sjerne01", "../GSOpenGL2019/Data/Models/Star.obj", Vec3(5.f, 5.f, 5.f), Vec3(0.f, 0.f, 1.f), 0.f, Vec3(1.f, 1.f, 1.f), true, false);
+
+    mSpiller = Spiller;
+    mFiende = Fiende;
+
+    mStjerne01 = Stjerne01;
+    mStjerne02 = Stjerne02;
+    mStjerne03 = Stjerne03;
+    mStjerne04 = Stjerne04;
+
+    mStartpunkt = Vec3(0.f, 0.f, 0.f);
+    mSluttpunkt = Vec3(10.f, 10.f, 10.f);
+
+    SceneObjects2.push_back(mSpiller);
+    SceneObjects2.push_back(mFiende);
+    SceneObjects2.push_back(mStjerne01);
+    SceneObjects2.push_back(mStjerne02);
+    SceneObjects2.push_back(mStjerne03);
+    SceneObjects2.push_back(mStjerne04);
 
     // ======================
     // -------------|Lights|-------------
@@ -213,20 +212,9 @@ void RenderWindow::init()
     //Assigns an object to the interObj ptr.
     interObj = Ball;
     impactObj = Ball2;
-    path = Curve;
-    pathObj = ThePyramid;
-    doorObj = Door;
+    //path = Curve;
+    //doorObj = Door;
     terrainObj = TerrainGraph;
-
-    ScoreBoardPtr = ScoreBoard;
-
-    gateObj = Gate;
-
-    trophy01 = Box1;
-    trophy02 = Box2;
-    trophy03 = Box3;
-    trophy04 = Box4;
-    enemy = ThePyramid;
 
     // Interactive object
     if (interObj)
@@ -241,26 +229,6 @@ void RenderWindow::init()
     // =====================================================
     SceneObjects.push_back(lightSrc01);
 
-    //SceneObjects.push_back(Ground);
-    //
-    //SceneObjects.push_back(WallLeft);
-    //SceneObjects.push_back(WallRight);
-    //SceneObjects.push_back(WallTop);
-    //SceneObjects.push_back(WallBottom);
-    //
-    //SceneObjects.push_back(Tree1);
-    //SceneObjects.push_back(Tree2);
-    //SceneObjects.push_back(Tree3);
-    //SceneObjects.push_back(Tree4);
-    //SceneObjects.push_back(Tree5);
-    //SceneObjects.push_back(Ball2);
-    //SceneObjects.push_back(Gate);
-    //
-    //SceneObjects.push_back(Doughnut);
-
-    SceneObjects.push_back(Terreng);
-
-
     // =====================================================
     // ++++++++++++++++++++++|Scene 2|++++++++++++++++++++++++
     // =====================================================
@@ -268,45 +236,11 @@ void RenderWindow::init()
 
     SceneObjects2.push_back(TerrainGraph);
 
-    //SceneObjects2.push_back(WallLeft);
-    //SceneObjects2.push_back(WallRight);
-    //SceneObjects2.push_back(WallTop);
-    //SceneObjects2.push_back(WallBottom);
-
-    //SceneObjects2.push_back(TheOtherWall);
-    //SceneObjects2.push_back(Building);
-    //SceneObjects2.push_back(Door);
-    //SceneObjects2.push_back(Flag);
-    //SceneObjects2.push_back(Tree1);
-    //SceneObjects2.push_back(Tree2);
-    //SceneObjects2.push_back(Tree3);
-    //SceneObjects2.push_back(Tree4);
-    //SceneObjects2.push_back(Tree5);
-    //SceneObjects2.push_back(IndoorsTetrahedron);
 
     // =====================================================
     // ++++++++++++++++++++++|Scene 3|++++++++++++++++++++++++
     // =====================================================
     SceneObjects3.push_back(lightSrc01);
-
-    //SceneObjects3.push_back(WallLeft);
-    //SceneObjects3.push_back(WallRight);
-    //SceneObjects3.push_back(WallTop);
-    //SceneObjects3.push_back(WallBottom);
-
-    SceneObjects3.push_back(Box1);
-
-    SceneObjects3.push_back(ThePyramid);
-
-    //SceneObjects3.push_back(Ground);
-    SceneObjects3.push_back(Box1);
-    SceneObjects3.push_back(Box2);
-    SceneObjects3.push_back(Box3);
-    SceneObjects3.push_back(Box4);
-
-    SceneObjects3.push_back(Gate);
-
-    SceneObjects3.push_back(ScoreBoard);
 
     //Putter debugObjects inn i et array.
     for (auto it = DebugObjects.begin(); it != DebugObjects.end(); it++)
@@ -350,12 +284,6 @@ void RenderWindow::init()
     //Setter egen farge på spiller ballen
     interObj->mMaterial.mObjectColor = Vec3(1.f, 1.f, 0.f);
 
-    //Setter egne farger på bokser og fienden,
-    Box1->mMaterial.mObjectColor = Vec3(0.f, 1.f, 1.f);
-    Box2->mMaterial.mObjectColor = Vec3(0.f, 1.f, 1.f);
-    Box3->mMaterial.mObjectColor = Vec3(0.f, 1.f, 1.f);
-    Box4->mMaterial.mObjectColor = Vec3(0.f, 1.f, 1.f);
-
     ThePyramid->mMaterial.mObjectColor = Vec3(1.f, 0.f, 0.f);
 
     ////Setter egne farger på veggene
@@ -376,19 +304,35 @@ void RenderWindow::init()
     TerrainGraph->mMaterial.setTextureUnit(2);
     TerrainGraph->mMaterial.mObjectColor = Vec3(0.7f, 1.f, 0.1f);
 
-    //Setter egne verdier på porten
-    Gate->init();
-    Gate->setShader(mShaderProgram[1]);
-    Gate->mMaterial.setTextureUnit(1);
-    Gate->mMaterial.mObjectColor = Vec3(1.f, 1.f, 1.f);
-
-    //Setter egne verdier på billboard
-    ScoreBoard->init();
-    ScoreBoard->setShader(mShaderProgram[3]);
-    ScoreBoard->mMaterial.setTextureUnit(3);
-    ScoreBoard->mMaterial.mObjectColor = Vec3(1.f, 1.f, 1.f);
-
-    static_cast<SpriteShader*>(mShaderProgram[3])->setSprite(static_cast<Billboard*>(ScoreBoard));
+    // /////////////////////////////////////////////////////////////
+    // SETTER EGNE VERDIER PÅ DE VIKTIGE OBJEKTENE!!!
+    // Spiller
+    static_cast<ObjMesh*>(Spiller)->init();
+    static_cast<ObjMesh*>(Spiller)->setShader(mShaderProgram[1]);
+    static_cast<ObjMesh*>(Spiller)->mMaterial.setTextureUnit(5);
+    static_cast<ObjMesh*>(Spiller)->mMaterial.mObjectColor = Vec3(1.f, 1.f, 1.f);
+    // Fiende
+    static_cast<ObjMesh*>(Fiende)->init();
+    static_cast<ObjMesh*>(Fiende)->setShader(mShaderProgram[1]);
+    static_cast<ObjMesh*>(Fiende)->mMaterial.setTextureUnit(6);
+    static_cast<ObjMesh*>(Fiende)->mMaterial.mObjectColor = Vec3(1.f, 1.f, 1.f);
+    // Stjerne
+    static_cast<ObjMesh*>(Stjerne01)->init();
+    static_cast<ObjMesh*>(Stjerne01)->setShader(mShaderProgram[2]);
+    static_cast<ObjMesh*>(Stjerne01)->mMaterial.setTextureUnit(0);
+    static_cast<ObjMesh*>(Stjerne01)->mMaterial.mObjectColor = Vec3(1.f, 0.9f, 0.5f);
+    static_cast<ObjMesh*>(Stjerne02)->init();
+    static_cast<ObjMesh*>(Stjerne02)->setShader(mShaderProgram[2]);
+    static_cast<ObjMesh*>(Stjerne02)->mMaterial.setTextureUnit(0);
+    static_cast<ObjMesh*>(Stjerne02)->mMaterial.mObjectColor = Vec3(1.f, 0.9f, 0.5f);
+    static_cast<ObjMesh*>(Stjerne03)->init();
+    static_cast<ObjMesh*>(Stjerne03)->setShader(mShaderProgram[2]);
+    static_cast<ObjMesh*>(Stjerne03)->mMaterial.setTextureUnit(0);
+    static_cast<ObjMesh*>(Stjerne03)->mMaterial.mObjectColor = Vec3(1.f, 0.9f, 0.5f);
+    static_cast<ObjMesh*>(Stjerne04)->init();
+    static_cast<ObjMesh*>(Stjerne04)->setShader(mShaderProgram[2]);
+    static_cast<ObjMesh*>(Stjerne04)->mMaterial.setTextureUnit(0);
+    static_cast<ObjMesh*>(Stjerne04)->mMaterial.mObjectColor = Vec3(1.f, 0.9f, 0.5f);
 
     //==============================================
     //+-+-+-+-+-+|Setting up camera locations & Systems|+-+-+-+-+-+
@@ -438,7 +382,8 @@ void RenderWindow::render()
     if (!cameraInHouse && cameraMode == 0)
     {
         // What does the camera look at?
-        const gs2019::Vector3D target (interObj->getPosition().x, interObj->getPosition().y, interObj->getPosition().z);
+        //const gs2019::Vector3D target (interObj->getPosition().x, interObj->getPosition().y, interObj->getPosition().z);
+        const gs2019::Vector3D target (mSpiller->getPosition().x, mSpiller->getPosition().y, mSpiller->getPosition().z);
 
         TheCamera->position.x = interObj->getPosition().x;
         TheCamera->position.y = interObj->getPosition().y + 3.f;
@@ -453,7 +398,8 @@ void RenderWindow::render()
         TheCamera->position = CamLoc01;
 
         // What does the camera look at?
-        const gs2019::Vector3D target (interObj->getPosition().x, interObj->getPosition().y, interObj->getPosition().z);
+        //const gs2019::Vector3D target (interObj->getPosition().x, interObj->getPosition().y, interObj->getPosition().z);
+        const gs2019::Vector3D target (mSpiller->getPosition().x, mSpiller->getPosition().y, mSpiller->getPosition().z);
         TheCamera->lookAt(target);
     }
     // CAMERA 3:
@@ -463,7 +409,8 @@ void RenderWindow::render()
         TheCamera->position = CamLoc02;
 
         // What does the camera look at?
-        const gs2019::Vector3D target (interObj->getPosition().x, interObj->getPosition().y, interObj->getPosition().z);
+        //const gs2019::Vector3D target (interObj->getPosition().x, interObj->getPosition().y, interObj->getPosition().z);
+        const gs2019::Vector3D target (mSpiller->getPosition().x, mSpiller->getPosition().y, mSpiller->getPosition().z);
         TheCamera->lookAt(target);
     }
     // CAMERA 4:
@@ -534,8 +481,6 @@ void RenderWindow::render()
 
     float curveDistance = MathLab::abs(cos(time*0.1f));
 
-    pathObj->setLocation(path->evaluateBezier(3, curveDistance).x, path->evaluateBezier(3, curveDistance).y, path->evaluateBezier(3, curveDistance).z);
-
     if (debug)
     {
         for (auto it = DebugObjects.begin(); it != DebugObjects.end(); it++)
@@ -590,82 +535,6 @@ void RenderWindow::render()
         }
     }
 
-    //+++++++++++++++++++++++
-    //|||||-Game related checks-|||||
-    //+++++++++++++++++++++++
-    const gs2019::Vector3D trophyDistance01 = interObj->getPosition() - trophy01->getPosition();
-    const gs2019::Vector3D trophyDistance02 = interObj->getPosition() - trophy02->getPosition();
-    const gs2019::Vector3D trophyDistance03 = interObj->getPosition() - trophy03->getPosition();
-    const gs2019::Vector3D trophyDistance04 = interObj->getPosition() - trophy04->getPosition();
-
-    const gs2019::Vector3D enemyDistance = interObj->getPosition() - pathObj->getPosition();
-
-    if (trophyDistance01.length() <= (0.5f + interObj->radius) && !trophy01Taken && (currentScene == 2))
-    {
-        trophy01->setLocation(0.f, -1000.f, 0.f);
-        trophy01Taken = true;
-
-        ++trophyCounter;
-        static_cast<Billboard*>(ScoreBoardPtr)->updateUVFrame(trophyCounter);
-
-        qDebug() << "TROPHY 1 PICKED UP!";
-    }
-
-    if (trophyDistance02.length() <= (0.5f + interObj->radius) && !trophy02Taken && (currentScene == 2))
-    {
-        trophy02->setLocation(0.f, -1000.f, 0.f);
-        trophy02Taken = true;
-
-        ++trophyCounter;
-        static_cast<Billboard*>(ScoreBoardPtr)->updateUVFrame(trophyCounter);
-
-        qDebug() << "TROPHY 2 PICKED UP!";
-    }
-
-    if (trophyDistance03.length() <= (0.5f + interObj->radius) && !trophy03Taken && (currentScene == 2))
-    {
-        trophy03->setLocation(0.f, -1000.f, 0.f);
-        trophy03Taken = true;
-
-        ++trophyCounter;
-        static_cast<Billboard*>(ScoreBoardPtr)->updateUVFrame(trophyCounter);
-
-        qDebug() << "TROPHY 3 PICKED UP!";
-    }
-
-    if (trophyDistance04.length() <= (0.5f + interObj->radius) && !trophy04Taken && (currentScene == 2))
-    {
-        trophy04->setLocation(0.f, -1000.f, 0.f);
-        trophy04Taken = true;
-
-        ++trophyCounter;
-        static_cast<Billboard*>(ScoreBoardPtr)->updateUVFrame(trophyCounter);
-
-        qDebug() << "TROPHY 4 PICKED UP!";
-    }
-
-    if (enemyDistance.length() <= (0.5f + interObj->radius) && !playerCollided && (currentScene == 2))
-    {
-        restartGame();
-    }
-
-    if (trophy01Taken && trophy02Taken && trophy03Taken && trophy04Taken)
-    {
-        gateObj->move(0.f, 0.1f, 0.1f, Vec3(0.f, 1.f ,0.f));
-
-        static_cast<OctahedronBall*>(interObj)->gateOpen = true;
-
-        if(interObj->getPosition().z < -10.f)
-        {
-            //qDebug() << "CONGRATULATIONS! YOU'VE WON THE GAME!!!!";
-            static_cast<Billboard*>(ScoreBoardPtr)->updateUVFrame(5);
-        }
-        else
-        {
-            //qDebug() << "GO!!!!";
-            static_cast<Billboard*>(ScoreBoardPtr)->updateUVFrame(4);
-        }
-    }
     //++++++ |GAME STUFF END| +++++++++++++++++++++++++++++++++++++
 
     //Calculate framerate before
@@ -733,51 +602,6 @@ void RenderWindow::smoothTerrain()
 {
     static_cast<graph*>(terrainObj)->makeSmooth();
     terrainObj->init();
-}
-
-void RenderWindow::startGame()
-{
-    currentScene = 2;
-
-    cameraMode = 1;
-
-    static_cast<OctahedronBall*>(interObj)->stopVelocity();
-    interObj->setLocation(0.f, 0.f, 0.f);
-}
-
-void RenderWindow::pauseGame()
-{
-    timeActive = !timeActive;
-    static_cast<OctahedronBall*>(interObj)->stopVelocity();
-}
-
-void RenderWindow::restartGame()
-{
-    playerCollided = true;
-    interObj->setLocation(playerStartPos.x, playerStartPos.y, playerStartPos.z);
-
-    qDebug() << "GAME OVER!";
-
-    trophyCounter = 0;
-    static_cast<Billboard*>(ScoreBoardPtr)->updateUVFrame(0);
-    static_cast<OctahedronBall*>(interObj)->stopVelocity();
-    static_cast<OctahedronBall*>(interObj)->resetPhysics();
-    //static_cast<OctahedronBall*>(interObj)->gateOpen = false;
-
-    trophy01Taken = false;
-    trophy02Taken = false;
-    trophy03Taken = false;
-    trophy04Taken = false;
-
-    trophy01->setLocation(trophyLoc01.x, trophyLoc01.y, trophyLoc01.z);
-    trophy02->setLocation(trophyLoc02.x, trophyLoc02.y, trophyLoc02.z);
-    trophy03->setLocation(trophyLoc03.x, trophyLoc03.y, trophyLoc03.z);
-    trophy04->setLocation(trophyLoc04.x, trophyLoc04.y, trophyLoc04.z);
-
-    Vec3 gateLoc(9.f, 0.5f, -10.f);
-    gateObj->setLocation(gateLoc.x, gateLoc.y, gateLoc.z);
-
-    playerCollided = false;
 }
 
 void RenderWindow::resetPlayer()
@@ -898,7 +722,7 @@ void RenderWindow::keyReleaseEvent(QKeyEvent *event)
 
 void RenderWindow::processInputs()
 {
-    float moveSpeed = 0.005f;
+    float moveSpeed = 0.05f;
     float rotationSpeed = 5.f;
 
     for (auto i = pressedKeys.begin(); i != pressedKeys.end(); i++)
@@ -907,32 +731,26 @@ void RenderWindow::processInputs()
         {
             if (*i == Qt::Key_D)
             {
-                interObj->move(moveSpeed, 0.f, 0.f, gs2019::Vector3D(0.f, 1.f, 0.f));
+                //interObj->move(moveSpeed, 0.f, 0.f, gs2019::Vector3D(0.f, 1.f, 0.f));
+                mSpiller->move(moveSpeed, 0.f, 0.f, gs2019::Vector3D(0.f, 1.f, 0.f));
             }
 
             if (*i == Qt::Key_A)
             {
-                interObj->move(-moveSpeed, 0.f, 0.f, gs2019::Vector3D(0.f, 1.f, 0.f));
+                //interObj->move(-moveSpeed, 0.f, 0.f, gs2019::Vector3D(0.f, 1.f, 0.f));
+                mSpiller->move(-moveSpeed, 0.f, 0.f, gs2019::Vector3D(0.f, 1.f, 0.f));
             }
 
             if (*i == Qt::Key_W)
             {
-                interObj->move(0.f, 0.f, -moveSpeed, gs2019::Vector3D(0.f, 1.f, 0.f));
+                //interObj->move(0.f, 0.f, -moveSpeed, gs2019::Vector3D(0.f, 1.f, 0.f));
+                mSpiller->move(0.f, 0.f, -moveSpeed, gs2019::Vector3D(0.f, 1.f, 0.f));
             }
 
             if (*i == Qt::Key_S)
             {
-                interObj->move(0.f, 0.f, moveSpeed, gs2019::Vector3D(0.f, 1.f, 0.f));
-            }
-
-            if (*i == Qt::Key_Left)
-            {
-                doorObj->rotate(rotationSpeed, 0, 1, 0);
-            }
-
-            if (*i == Qt::Key_Right)
-            {
-                doorObj->rotate(-rotationSpeed, 0, 1, 0);
+                //interObj->move(0.f, 0.f, moveSpeed, gs2019::Vector3D(0.f, 1.f, 0.f));
+                mSpiller->move(0.f, 0.f, moveSpeed, gs2019::Vector3D(0.f, 1.f, 0.f));
             }
         }
     }
