@@ -1,10 +1,9 @@
 #include "Npc.h"
 
-
-Npc::Npc(BSplineCurve* inputCurve)
-{
-    bSplineCurve = inputCurve;
-}
+//Npc::Npc(BSplineCurve* inputCurve)
+//{
+//    bSplineCurve = inputCurve;
+//}
 
 //while (game running)
 //if (npc_state == PATROL) patrol()

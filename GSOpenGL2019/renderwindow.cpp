@@ -224,6 +224,33 @@ void RenderWindow::init()
         SceneObjects3.push_back(interObj);
     }
 
+    // ///////////////////////////////////////////////////////////////////////////////////////////////////////
+    // Oblig 3 stuff
+    VisualObject* testCurve = new BSplineCurve();
+
+    std::vector<float> testKnots;
+    std::vector<Vec3> testPoints;
+
+    testKnots.push_back(0.f);
+    testKnots.push_back(0.f);
+    testKnots.push_back(0.f);
+    testKnots.push_back(0.f);
+
+    testKnots.push_back(1.f);
+    testKnots.push_back(1.f);
+    testKnots.push_back(1.f);
+    testKnots.push_back(1.f);
+
+    testPoints.push_back(Vec3(1.f, 1.f, 1.f));
+    testPoints.push_back(Vec3(2.f, 2.f, 2.f));
+    testPoints.push_back(Vec3(3.f, 3.f, 3.f));
+    testPoints.push_back(Vec3(4.f, 4.f, 4.f));
+
+    TheBSpline = static_cast<BSplineCurve*>(testCurve);
+    TheBSpline->setKnotsAndControlPoints(testKnots, testPoints);
+
+    DebugObjects.push_back(testCurve);
+
     // =====================================================
     // ++++++++++++++++++++++|Scene 1|++++++++++++++++++++++++
     // =====================================================
