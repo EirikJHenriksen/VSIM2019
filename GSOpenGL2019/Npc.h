@@ -13,7 +13,7 @@ enum NPCevents{ENDPOINT_ARRIVED, ITEM_TAKEN, PLAYER_DETECTED, OBSTACLE_DETECTED}
 typedef gs2019::Vector3D Vec3;
 class Npc : public VisualObject
 {
-    BSplineCurve& bSplineCurve;
+    BSplineCurve* bSplineCurve;
     Vec3 playerPos;
 
     //FSM Part
@@ -33,7 +33,7 @@ class Npc : public VisualObject
     // viktig å ikke endre endepunktene
 
 public:
-    Npc();
+    Npc(BSplineCurve* inputCurve);
 
     // FSM Part
     void patrol();

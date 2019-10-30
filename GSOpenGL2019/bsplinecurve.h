@@ -12,13 +12,15 @@ public:
     // ikke alle disse funksjonene er nødvendige
     BSplineCurve();
     BSplineCurve(std::vector<float> knots, std::vector<Vec3> controlpoints, int degree=2);
+
+    void setKnotsAndControlPoints(std::vector<float> knots, std::vector<Vec3> points);
+
+    Vec3 evaluateBSpline(int my, float x);
+    Vec3 evaluateBSpline(int degree, int startKnot, float x);
+    int findKnotInterval(float x);
+
     void initVertexBufferObjects();
     void draw(GLint positionAttribute, GLint colorAttribute, GLint textureAttribute=-1);
-    void setKnotsAndControlPoints(std::vector<float> knots, std::vector<Vec3> points);
-    Vec3 evaluateBSpline(int my, float x);
-    int findKnotInterval(float x);
-    Vec3 evaluateBSpline(int degree, int startKnot, float x);
-
 
 private:
     Vec3 b[4];      // control points

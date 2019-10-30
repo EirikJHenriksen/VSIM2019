@@ -5,11 +5,11 @@
 
 graph::graph(bool itDoesNothing)
 {
-    // Loads LAS information from a txt-file!!!
+    // Loads LAS information from a txt-file, it is then written into a mesh file.
     //loadLASData("../GSOpenGL2019/Data/MapData/godoynes_simplified.txt");
 
-    buildGrid(64, 100.f, 1.f, 100.f, -1.5f);
-
+    // Read generated mesh file.
+    readFromFile("../GSOpenGL2019/Data/MapData/GodoynesMesh.nei");
     mMatrix.setToIdentity();
 }
 
@@ -64,6 +64,44 @@ graph::graph(int subdivisions, float sizeX , float sizeY, float sizeZ, float inH
         }
     }
 
+    mMatrix.setToIdentity();
+}
+
+void graph::readFromFile(std::string filnavn)
+{
+    std::ifstream inn;
+    inn.open(filnavn.c_str());
+
+    if (inn.is_open()) {
+        unsigned int n;
+        Vertex vertex;
+        inn >> n;
+        mVertices.reserve(n);
+        for (unsigned int i=0; i<n; i++) {
+            inn >> vertex;
+            mVertices.push_back(vertex);
+        }
+        inn.close();
+    }
+
+    // THIS MUST BE THE SAME VALUE AS WHEN THE MESH WAS GENERATED
+    mSubdivisions = 64;
+
+    for (int i = 0; i <= (mSubdivisions)*(mSubdivisions)+(mSubdivisions-2); i++)
+    {
+        if ((i+1)%(mSubdivisions+1) != 0)
+        {
+            mIndices.push_back(i);
+            mIndices.push_back(i+1);
+            mIndices.push_back(i+mSubdivisions+1);
+
+            mIndices.push_back(i+1);
+            mIndices.push_back(i+mSubdivisions+2);
+            mIndices.push_back(i+mSubdivisions+1);
+        }
+    }
+
+    locateNeighbours();
     mMatrix.setToIdentity();
 }
 
@@ -239,7 +277,7 @@ void graph::buildGrid(int subdivisions, float sizeX , float sizeY, float sizeZ, 
 
     locateNeighbours();
 
-    //applyHeightFunction();
+    applyHeightFunction();
 
     mMatrix.setToIdentity();
 }
@@ -284,6 +322,28 @@ void graph::applyHeightFunction()
             height = height/points;
 
         mVertices[i].set_xyz(mVertices[i].get_xyz().x, height, mVertices[i].get_xyz().z);
+    }
+
+    // Saving the data to a different format.
+    writeToFile("../GSOpenGL2019/Data/MapData/GodoynesMesh.nei");
+}
+
+void graph::writeToFile(std::string filnavn)
+{
+    std::ofstream ut;
+    ut.open(filnavn.c_str());
+
+    if (ut.is_open())
+    {
+        auto n = mVertices.size();
+        Vertex vertex;
+        ut << n << std::endl;
+        for (auto it=mVertices.begin(); it != mVertices.end(); it++)
+        {
+            vertex = *it;
+            ut << vertex << std::endl;
+        }
+        ut.close();
     }
 }
 

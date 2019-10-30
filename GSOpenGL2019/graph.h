@@ -54,6 +54,10 @@ public:
 
     void buildGrid(int subdivisions, float sizeX, float sizeY, float sizeZ, float inHeightOffset);
 
+    // Read and write from .txt or .nei files
+    void readFromFile(std::string filnavn);
+    void writeToFile(std::string filnavn);
+
 private:
     float heightOffset;
 

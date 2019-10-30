@@ -1,5 +1,11 @@
 #include "Npc.h"
 
+
+Npc::Npc(BSplineCurve* inputCurve)
+{
+    bSplineCurve = inputCurve;
+}
+
 //while (game running)
 //if (npc_state == PATROL) patrol()
 //if (npc_state == CHASE) chase()

@@ -5,6 +5,14 @@ BSplineCurve::BSplineCurve()
 
 }
 
+void BSplineCurve::setKnotsAndControlPoints(std::vector<float> knots, std::vector<Vec3> points)
+{
+    for (int i = 0; i < 4; i++)
+    {
+        b[i] = points[i];
+    }
+}
+
 // Parametre inn:
 // x - en parameterverdi på skjøtvektor
 // my - et tall slik at t[my] <= x < t[my+1]
