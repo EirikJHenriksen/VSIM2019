@@ -7,17 +7,25 @@
 
 //class BSplineCurve;
 
-enum NPCstates{SLEEP, PATROL, LEARN, CHASE};
-enum NPCevents{ENDPOINT_ARRIVED, ITEM_TAKEN, PLAYER_DETECTED, OBSTACLE_DETECTED};
+// We use the concepts event, notification and transition in this context.
+enum NPCstates{PATROL, LEARN};
+// the notifications are sent from the NPC to itself.
+// The reason for this is that not all transitions can be done immediately.
+enum NPCevents{NOTHING, ENDPOINT_ARRIVED, ITEM_TAKEN, ALL_ITEMS_COLLECTED};
 
 typedef gs2019::Vector3D Vec3;
 class Npc : public VisualObject
 {
+    NPCstates state{PATROL};
+    NPCevents event{NOTHING};
+
+    void update();
+    bool gameIsRunning{true};
+
     BSplineCurve* bSplineCurve;
     Vec3 playerPos;
 
     //FSM Part
-    int state;
     void notify(int notification);
 
     std::queue<int> notification_queue;
@@ -40,8 +48,8 @@ public:
     void learn();
 
     // Drawing part
-    void init() override;
-    void draw() override;
+    void init() override {};
+    void draw() override {};
 };
 
 #endif // NPC_H
