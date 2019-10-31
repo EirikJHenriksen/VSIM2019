@@ -2,7 +2,7 @@
 
 BSplineCurve::BSplineCurve()
 {
-
+    mMatrix.setToIdentity();
 }
 
 void BSplineCurve::setKnotsAndControlPoints(std::vector<float> knots, std::vector<Vec3> points)
@@ -24,7 +24,7 @@ void BSplineCurve::setKnotsAndControlPoints(std::vector<float> knots, std::vecto
 
     for (int i = 0; i < 10; i++)
     {
-        temp.set_xyz(evaluateBSpline(testMY, testMY + (testX * i)).x, evaluateBSpline(testMY, testMY + (testX * i)).y, evaluateBSpline(testMY, testMY + (testX * i)).z);
+        temp.set_xyz(evaluateBSpline(testMY * i, testMY + (testX * i)).x, evaluateBSpline(testMY * i, testMY + (testX * i)).y, evaluateBSpline(testMY * i, testMY + (testX * i)).z);
         mVertices.push_back(temp);
     }
 }
