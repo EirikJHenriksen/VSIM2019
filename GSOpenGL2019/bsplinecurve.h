@@ -6,6 +6,7 @@
 
 
 typedef gs2019::Vector3D Vec3;
+typedef gs2019::Vector2D Vec2;
 class BSplineCurve : public VisualObject
 {
 public:
@@ -19,8 +20,8 @@ public:
     Vec3 evaluateBSpline(int degree, int startKnot, float x);
     int findKnotInterval(float x);
 
-    void initVertexBufferObjects();
-    void draw(GLint positionAttribute, GLint colorAttribute, GLint textureAttribute=-1);
+    void init() override;//VertexBufferObjects();
+    void draw() override;//(GLint positionAttribute, GLint colorAttribute, GLint textureAttribute=-1);
 
 private:
     Vec3 b[4];      // control points

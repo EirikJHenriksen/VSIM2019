@@ -28,6 +28,7 @@
 #include "billboard.h"
 #include "octahedronball.h"
 #include "light.h"
+#include "bsplinecurve.h"
 
 class QOpenGLContext;
 class Shader;
@@ -106,6 +107,8 @@ private:
 
 
     // Important/dynamic objects (VSIM):
+
+    BSplineCurve* TheBSpline;
 
     VisualObject* mSpiller{nullptr};
     VisualObject* mFiende{nullptr};
