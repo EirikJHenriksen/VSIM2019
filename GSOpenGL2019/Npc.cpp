@@ -74,20 +74,8 @@ void Npc::learn()
 
     if (!notification_queue.empty())
     {
-        switch(notification_queue.front())
-        {
-        case ITEM_TAKEN:
-            //remove controlpoint and one (the middle) internal knot
-            break;
-        case ENDPOINT_ARRIVED:
-            //build new path
-            //npc_state = PATROL
-            break;
-        case ALL_ITEMS_COLLECTED:
-            //stop
-            break;
-        }
 
+        notify(notification_queue.front());
         notification_queue.pop();
 
     }
@@ -104,5 +92,22 @@ void Npc::checkCurve()
         curvePoints = bSplineCurve->b->length();
         notification_queue.push(ITEM_TAKEN);
         qDebug() << "curve point removed";
+    }
+}
+
+void Npc::notify(int notification)
+{
+    switch(notification_queue.front())
+    {
+    case ITEM_TAKEN:
+        //remove controlpoint and one (the middle) internal knot
+        break;
+    case ENDPOINT_ARRIVED:
+        //build new path
+        //npc_state = PATROL
+        break;
+    case ALL_ITEMS_COLLECTED:
+        //stop
+        break;
     }
 }
