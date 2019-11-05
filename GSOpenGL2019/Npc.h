@@ -17,8 +17,8 @@ typedef gs2019::Vector3D Vec3;
 class Npc : public VisualObject
 {
     float collisionDistance{1.f};
-    int nextEndpoint{0};
     GLfloat time = 0.f;
+    bool isStillNearEndpoint{false};
 
     VisualObject* enemy{nullptr};
 

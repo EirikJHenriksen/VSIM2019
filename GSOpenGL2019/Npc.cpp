@@ -17,20 +17,37 @@ void Npc::update()
 
 void Npc::patrol()
 {
+    qDebug() << "curveTime" << time;
+
     // move
     time += 0.1f;
     float curveTime = MathLab::abs(cos(time*0.02f));
-    qDebug() << "curveTime" << curveTime;
     enemy->setLocation(bSplineCurve->travelAlongSpline(curveTime).x, bSplineCurve->travelAlongSpline(curveTime).y, bSplineCurve->travelAlongSpline(curveTime).z);
 
     //if (ENDPOINT_ARRIVED)
     //notify(ENDPOINT_ARRIVED);
 
-    // at endpoint?
-    if ((enemy->getPosition()) - (bSplineCurve->b[nextEndpoint]) < collisionDistance)
+    if (isStillNearEndpoint)
     {
-        notification_queue.push(ENDPOINT_ARRIVED);
-        state = LEARN;
+        // if far from both endpoints
+        if ((enemy->getPosition()) - (bSplineCurve->b[0]) > (collisionDistance)&&(enemy->getPosition()) - (bSplineCurve->b[curvePoints-1]) < collisionDistance)
+        {
+            isStillNearEndpoint = false;
+        }
+    }
+    else
+    {
+        // at an endpoint?
+        if ((enemy->getPosition()) - (bSplineCurve->b[0]) < collisionDistance)
+        {
+            notification_queue.push(ENDPOINT_ARRIVED);
+            state = LEARN;
+        }
+        else if ((enemy->getPosition()) - (bSplineCurve->b[curvePoints-1]) < collisionDistance)
+        {
+            notification_queue.push(ENDPOINT_ARRIVED);
+            state = LEARN;
+        }
     }
 
 
@@ -51,32 +68,28 @@ void Npc::patrol()
 
 void Npc::learn()
 {
-    if (nextEndpoint == bSplineCurve->b->length())
-    {
-        nextEndpoint = 0;
-    }
-    else
-    {
-        nextEndpoint = bSplineCurve->b->length();
-    }
-
     qDebug() << "learn()";
+
+    isStillNearEndpoint = true;
+
     if (!notification_queue.empty())
     {
+        switch(notification_queue.front())
+        {
+        case ITEM_TAKEN:
+            //remove controlpoint and one (the middle) internal knot
+            break;
+        case ENDPOINT_ARRIVED:
+            //build new path
+            //npc_state = PATROL
+            break;
+        case ALL_ITEMS_COLLECTED:
+            //stop
+            break;
+        }
+
         notification_queue.pop();
-        //    if (ITEM_TAKEN)
-        //    {
-        //        //remove controlpoint and one (the middle) internal knot
-        //    }
-        //    if (ENDPOINT_ARRIVED)
-        //    {
-        //        //build new path
-        //        //npc_state = PATROL
-        //    }
-        //    if (ALL_ITEMS_COLLECTED)
-        //    {
-        //        //stop
-        //    }
+
     }
     else // queue empty
     {
