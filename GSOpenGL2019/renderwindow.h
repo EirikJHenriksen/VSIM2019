@@ -109,16 +109,26 @@ private:
     // Important/dynamic objects (VSIM):
     BSplineCurve* TheBSpline;
 
+    std::vector<float> splineKnots;
+    bool ctrlPointsChanged{false};
+
     VisualObject* mSpiller{nullptr};
     VisualObject* mFiende{nullptr};
+
+    bool mSpillerDead{false};
+    bool mFiendeDead{false};
 
     Vec3 mStartpunkt;
     Vec3 mSluttpunkt;
 
     VisualObject* mStjerne01{nullptr};
+    bool mStjerne01Taken{false};
     VisualObject* mStjerne02{nullptr};
+    bool mStjerne02Taken{false};
     VisualObject* mStjerne03{nullptr};
+    bool mStjerne03Taken{false};
     VisualObject* mStjerne04{nullptr};
+    bool mStjerne04Taken{false};
 
     // Rendering
     bool displayWireframe = false;

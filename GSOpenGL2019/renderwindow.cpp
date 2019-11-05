@@ -170,8 +170,8 @@ void RenderWindow::init()
 
     // ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     // [VSIM TING!!!]
-    VisualObject* Spiller = new ObjMesh("SpillerHelikopter", "../GSOpenGL2019/Data/Models/Helikopter.obj", Vec3(-3.f, 5.f, 0.f), Vec3(0.f, 0.f, 1.f), 0.f, Vec3(1.f, 1.f, 1.f), false, false);
-    VisualObject* Fiende = new ObjMesh("FiendeHelikopter", "../GSOpenGL2019/Data/Models/Helikopter.obj", Vec3(3.f, 1.f, 10.f), Vec3(0.f, 0.f, 1.f), 0.f, Vec3(1.f, 1.f, 1.f), false, false);
+    VisualObject* Spiller = new ObjMesh("SpillerHelikopter", "../GSOpenGL2019/Data/Models/Helikopter.obj", Vec3(-3.f, 0.f, -20.f), Vec3(0.f, 0.f, 1.f), 0.f, Vec3(1.f, 1.f, 1.f), false, false);
+    VisualObject* Fiende = new ObjMesh("FiendeHelikopter", "../GSOpenGL2019/Data/Models/Helikopter.obj", Vec3(3.f, 0.f, 10.f), Vec3(0.f, 0.f, 1.f), 0.f, Vec3(1.f, 1.f, 1.f), false, false);
 
     VisualObject* Stjerne01 = new ObjMesh("Sjerne01", "../GSOpenGL2019/Data/Models/Star.obj", Vec3(-40.f, 0.f, -40.f), Vec3(0.f, 0.f, 1.f), 0.f, Vec3(1.f, 1.f, 1.f), true, false);
     VisualObject* Stjerne02 = new ObjMesh("Sjerne01", "../GSOpenGL2019/Data/Models/Star.obj", Vec3(-20.f, 0.f, 40.f), Vec3(0.f, 0.f, 1.f), 0.f, Vec3(1.f, 1.f, 1.f), true, false);
@@ -226,26 +226,25 @@ void RenderWindow::init()
 
     // ///////////////////////////////////////////////////////////////////////////////////////////////////////
     // Oblig 3 stuff
-    std::vector<float> testKnots;
-    std::vector<Vec3> testPoints;
+    std::vector<Vec3> ctrlPoints;
 
-    testKnots.push_back(0.f);
-    testKnots.push_back(0.f);
-    testKnots.push_back(0.f);
-    testKnots.push_back(0.f);
+    splineKnots.push_back(0.f);
+    splineKnots.push_back(0.f);
+    splineKnots.push_back(0.f);
+    splineKnots.push_back(0.f);
 
-    testKnots.push_back(1.f);
-    testKnots.push_back(1.f);
-    testKnots.push_back(1.f);
-    testKnots.push_back(1.f);
+    splineKnots.push_back(1.f);
+    splineKnots.push_back(1.f);
+    splineKnots.push_back(1.f);
+    splineKnots.push_back(1.f);
 
-    testPoints.push_back(Vec3(-40.f, 0.f, -40.f));
-    testPoints.push_back(Vec3(-20.f, 0.f, 40.f));
-    testPoints.push_back(Vec3(20.f, 0.f, -40.f));
-    testPoints.push_back(Vec3(40.f, 0.f, 40.f));
+    ctrlPoints.push_back(Vec3(-40.f, 0.f, -40.f));
+    ctrlPoints.push_back(Vec3(-20.f, 0.f, 40.f));
+    ctrlPoints.push_back(Vec3(20.f, 0.f, -40.f));
+    ctrlPoints.push_back(Vec3(40.f, 0.f, 40.f));
 
-    VisualObject* testCurve = new BSplineCurve(testKnots, testPoints, 3);
-    TheBSpline = static_cast<BSplineCurve*>(testCurve);
+    VisualObject* Curve = new BSplineCurve(splineKnots, ctrlPoints, 3);
+    TheBSpline = static_cast<BSplineCurve*>(Curve);
 
     DebugObjects.push_back(static_cast<VisualObject*>(TheBSpline));
 
@@ -504,9 +503,82 @@ void RenderWindow::render()
     if (timeActive)
         time += 0.1f;
 
-    // OBLIG 3
-    float curveTime = MathLab::abs(cos(time*0.02f));
-    mFiende->setLocation(TheBSpline->travelAlongSpline(curveTime).x, TheBSpline->travelAlongSpline(curveTime).y, TheBSpline->travelAlongSpline(curveTime).z);
+    // OBLIG 3 -- Horrible game logic
+    if (time > 1.f)
+    {
+        //float curveTime = MathLab::abs(cos(time*0.02f));
+        //mFiende->setLocation(TheBSpline->travelAlongSpline(curveTime).x, TheBSpline->travelAlongSpline(curveTime).y, TheBSpline->travelAlongSpline(curveTime).z);
+
+        if ((mStjerne01->getPosition() - mSpiller->getPosition()).length() < 1.f)
+        {
+            mStjerne01->setLocation(0.f, -1000.f, 0.f);
+            mStjerne01Taken = true;
+            ctrlPointsChanged = true;
+        }
+
+        if ((mStjerne02->getPosition() - mSpiller->getPosition()).length() < 1.f)
+        {
+            mStjerne02->setLocation(0.f, -1000.f, 0.f);
+            mStjerne02Taken = true;
+            ctrlPointsChanged = true;
+        }
+
+        if ((mStjerne03->getPosition() - mSpiller->getPosition()).length() < 1.f)
+        {
+            mStjerne03->setLocation(0.f, -1000.f, 0.f);
+            mStjerne03Taken = true;
+            ctrlPointsChanged = true;
+        }
+
+        if ((mStjerne04->getPosition() - mSpiller->getPosition()).length() < 1.f)
+        {
+            mStjerne04->setLocation(0.f, -1000.f, 0.f);
+            mStjerne04Taken = true;
+            ctrlPointsChanged = true;
+        }
+
+        std::vector<Vec3> ctrlPoints;
+
+        if (ctrlPointsChanged)
+        {
+            // Lastes inn uansett! (Startpunkt)
+            ctrlPoints.push_back(Vec3(-40.f, 0.f, -40.f));
+
+            if (!mStjerne02Taken)
+            {
+                ctrlPoints.push_back(Vec3(-20.f, 0.f, 40.f));
+            }
+
+            if (!mStjerne02Taken)
+            {
+                ctrlPoints.push_back(Vec3(20.f, 0.f, -40.f));
+            }
+
+            // Lastes inn uansett! (Sluttpunkt)
+            ctrlPoints.push_back(Vec3(40.f, 0.f, 40.f));
+
+            TheBSpline->setKnotsAndControlPoints(splineKnots, ctrlPoints);
+
+            if (mStjerne01Taken && mStjerne02Taken && mStjerne03Taken && mStjerne04Taken)
+            {
+                mFiendeDead = true;
+            }
+        }
+
+        if ((mFiende->getPosition() - mSpiller->getPosition()).length() < 1.f || mSpillerDead)
+        {
+            static_cast<VisualObject*>(mSpiller)->mContRot = true;
+            mSpiller->move(0.f, -0.1f, 0.f, gs2019::Vector3D(0.f, 1.f, 0.f));
+            mSpillerDead = true;
+        }
+
+        if (mFiendeDead)
+        {
+            static_cast<VisualObject*>(mFiende)->mContRot = true;
+            mFiende->move(0.f, -0.1f, 0.f, gs2019::Vector3D(0.f, 1.f, 0.f));
+        }
+    }
+
 
 
     if (debug)
@@ -535,8 +607,10 @@ void RenderWindow::render()
     if (currentScene == 1)
     {
         // Sets the player y-axis value with barycentric coordinates
-        Vec3 tempVector{mSpiller->getPosition().x, 0.f, mSpiller->getPosition().z};
-        mSpiller->setHeight(terrainObj->findTargetHeight(tempVector) + 25.f);
+        //Vec3 tempVector{mSpiller->getPosition().x, 0.f, mSpiller->getPosition().z};
+        //mSpiller->setHeight(terrainObj->findTargetHeight(tempVector) + 0.f);
+
+        //mSpiller->setHeight(-10.f);
 
         //static_cast<OctahedronBall*>(interObj)->VertexA = terrainObj->vertexA;
         //static_cast<OctahedronBall*>(interObj)->VertexB = terrainObj->vertexB;
@@ -760,13 +834,15 @@ void RenderWindow::processInputs()
             if (*i == Qt::Key_D)
             {
                 //interObj->move(moveSpeed, 0.f, 0.f, gs2019::Vector3D(0.f, 1.f, 0.f));
-                mSpiller->move(-moveSpeed, 0.f, 0.f, gs2019::Vector3D(0.f, 1.f, 0.f));
+                //mSpiller->move(-moveSpeed, 0.f, 0.f, gs2019::Vector3D(0.f, 1.f, 0.f));
+                mSpiller->mMatrix.rotate(-moveSpeed*10.f, 0.f, 1.f, 0.f);
             }
 
             if (*i == Qt::Key_A)
             {
                 //interObj->move(-moveSpeed, 0.f, 0.f, gs2019::Vector3D(0.f, 1.f, 0.f));
-                mSpiller->move(moveSpeed, 0.f, 0.f, gs2019::Vector3D(0.f, 1.f, 0.f));
+                //mSpiller->move(moveSpeed, 0.f, 0.f, gs2019::Vector3D(0.f, 1.f, 0.f));
+                mSpiller->mMatrix.rotate(moveSpeed*10.f, 0.f, 1.f, 0.f);
             }
 
             if (*i == Qt::Key_W)

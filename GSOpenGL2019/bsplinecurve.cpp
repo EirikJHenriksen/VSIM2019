@@ -35,9 +35,16 @@ BSplineCurve::~BSplineCurve()
 
 void BSplineCurve::setKnotsAndControlPoints(std::vector<float> knots, std::vector<Vec3> points)
 {
+    // Resets vectors and arrays.
+    t.clear();
+    b[0] = Vec3();
+    b[1] = Vec3();
+    b[2] = Vec3();
+    b[3] = Vec3();
+
     n = knots.size();
 
-    qDebug() << "Degree: " << d << " Number of knots: " << n;
+    //qDebug() << "Degree: " << d << " Number of knots: " << n;
 
     for (int i = 0; i < points.size(); i++)
     {
