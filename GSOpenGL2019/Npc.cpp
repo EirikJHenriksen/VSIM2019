@@ -9,16 +9,17 @@ Npc::Npc(BSplineCurve* inputCurve, VisualObject* owner)
 
 void Npc::update()
 {
-    if (state == PATROL)
-        patrol();
-    if (state == LEARN)
-        learn();
+    if (isGameRunning)
+    {
+        if (state == PATROL)
+            patrol();
+        if (state == LEARN)
+            learn();
+    }
 }
 
 void Npc::patrol()
 {
-    qDebug() << "curveTime" << time;
-
     // move
     time += 0.1f;
     float curveTime = MathLab::abs(cos(time*0.02f));
@@ -30,20 +31,21 @@ void Npc::patrol()
     if (isStillNearEndpoint)
     {
         // if far from both endpoints
-        if ((enemy->getPosition()) - (bSplineCurve->b[0]) > (collisionDistance)&&(enemy->getPosition()) - (bSplineCurve->b[curvePoints-1]) < collisionDistance)
+        if (((enemy->getPosition() - bSplineCurve->b[0]).length() > collisionDistance) && ((enemy->getPosition() - bSplineCurve->b[3]).length() > collisionDistance))
         {
+            qDebug() << "distant" << time;
             isStillNearEndpoint = false;
         }
     }
     else
     {
         // at an endpoint?
-        if ((enemy->getPosition()) - (bSplineCurve->b[0]) < collisionDistance)
+        if ((enemy->getPosition() - bSplineCurve->b[0]).length() < collisionDistance)
         {
             notification_queue.push(ENDPOINT_ARRIVED);
             state = LEARN;
         }
-        else if ((enemy->getPosition()) - (bSplineCurve->b[curvePoints-1]) < collisionDistance)
+        else if ((enemy->getPosition() - bSplineCurve->b[3]).length() < collisionDistance)
         {
             notification_queue.push(ENDPOINT_ARRIVED);
             state = LEARN;
@@ -69,27 +71,28 @@ void Npc::patrol()
 void Npc::learn()
 {
     qDebug() << "learn()";
-
     isStillNearEndpoint = true;
 
-    if (!notification_queue.empty())
+    checkCurve();
+
+
+    while (!notification_queue.empty())
     {
 
         notify(notification_queue.front());
         notification_queue.pop();
 
     }
-    else // queue empty
-    {
-        state = PATROL;
-    }
+
+    state = PATROL;
 }
 
 void Npc::checkCurve()
 {
-    if (bSplineCurve->b->length() < curvePoints)
+    qDebug() << "checking";
+    if (bSplineCurve->remainingPoints < curvePoints)
     {
-        curvePoints = bSplineCurve->b->length();
+        curvePoints = bSplineCurve->remainingPoints;
         notification_queue.push(ITEM_TAKEN);
         qDebug() << "curve point removed";
     }
@@ -100,6 +103,7 @@ void Npc::notify(int notification)
     switch(notification_queue.front())
     {
     case ITEM_TAKEN:
+        qDebug() << "ITEM TAKEN!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!";
         //remove controlpoint and one (the middle) internal knot
         break;
     case ENDPOINT_ARRIVED:
@@ -108,6 +112,7 @@ void Npc::notify(int notification)
         break;
     case ALL_ITEMS_COLLECTED:
         //stop
+        isGameRunning = false;
         break;
     }
 }

@@ -16,9 +16,10 @@ enum NPCevents{NOTHING, ENDPOINT_ARRIVED, ITEM_TAKEN, ALL_ITEMS_COLLECTED};
 typedef gs2019::Vector3D Vec3;
 class Npc : public VisualObject
 {
-    float collisionDistance{1.f};
+    float collisionDistance{0.5f};
     GLfloat time = 0.f;
     bool isStillNearEndpoint{false};
+    bool isGameRunning{true};
 
     VisualObject* enemy{nullptr};
 
@@ -37,7 +38,7 @@ class Npc : public VisualObject
 
     // to check the b-spline curve
     void checkCurve();
-    int curvePoints{0};
+    int curvePoints{4};
 
     float elapsedTime;
     // B-Spline kurven har en skjøtvektor, f.eks (0, 0, 0, 1, 2, 3, 3, 3)
