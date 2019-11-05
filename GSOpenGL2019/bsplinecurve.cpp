@@ -5,9 +5,39 @@ BSplineCurve::BSplineCurve()
 
 }
 
+BSplineCurve::BSplineCurve(std::vector<float> knots, std::vector<Vec3> controlpoints, int degree)
+{
+    d = degree;
+
+    setKnotsAndControlPoints(knots, controlpoints);
+
+    Vertex temp(Vec3(0.f, 0.f, 0.f), Vec3(1.f, 0.f, 0.f), Vec2(0.f, 0.f));
+
+    // Creates vertecies so you can see the BSpline
+    float SplineResoulution{100.f};
+    for (unsigned int i = 0; i < SplineResoulution; i++)
+    {
+        temp.set_xyz(evaluateBSpline(d, i/SplineResoulution).x, evaluateBSpline(d, i/SplineResoulution).y, evaluateBSpline(d, i/SplineResoulution).z);
+        mVertices.push_back(temp);
+
+        //qDebug() << "Vector (" << temp.get_xyz().x << temp.get_xyz().y << temp.get_xyz().z << ")";
+    }
+
+    mMatrix.setToIdentity();
+    mMatrix.translate(0.f, 0.f, 0.f);
+    mMatrix.scale(1.f, 1.f, 1.f);
+}
+
+BSplineCurve::~BSplineCurve()
+{
+
+}
+
 void BSplineCurve::setKnotsAndControlPoints(std::vector<float> knots, std::vector<Vec3> points)
 {
-    Vertex temp(Vec3(0.f, 0.f, 0.f), Vec3(1.f, 0.f, 0.f), Vec2(0.f, 0.f));
+    n = knots.size();
+
+    qDebug() << "Degree: " << d << " Number of knots: " << n;
 
     for (int i = 0; i < points.size(); i++)
     {
@@ -18,15 +48,11 @@ void BSplineCurve::setKnotsAndControlPoints(std::vector<float> knots, std::vecto
     {
         t.push_back(knots[i]);
     }
+}
 
-    int testMY = 1;
-    float testX = 0.1f;
-
-    for (int i = 0; i < 10; i++)
-    {
-        temp.set_xyz(evaluateBSpline(testMY, testMY + (testX * i)).x, evaluateBSpline(testMY, testMY + (testX * i)).y, evaluateBSpline(testMY, testMY + (testX * i)).z);
-        mVertices.push_back(temp);
-    }
+Vec3 BSplineCurve::travelAlongSpline(float inputTime)
+{
+    return evaluateBSpline(d, inputTime);
 }
 
 // Parametre inn:
@@ -86,5 +112,5 @@ void BSplineCurve::draw()
     glBindVertexArray(mVAO);
     glUniformMatrix4fv(mMatrixUniform, 1, GL_TRUE, mMatrix.constData());
 
-    glDrawArrays(GL_LINE_STRIP, 0, signed(mVertices.size()));
+    glDrawArrays(GL_LINE_STRIP, 0, signed(mVertices.size())); //GL_LINE_STRIP
 }

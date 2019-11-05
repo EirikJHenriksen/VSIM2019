@@ -160,10 +160,10 @@ void RenderWindow::init()
     //VisualObject* IndoorsTetrahedron= new TriangleSurface("Tetrahedron", "../GSOpenGL2019/Data/Models/Tetrahedron.nei", Vec3(6.f, 0.f, -4.f), Vec3(0.f, 0.f, 0.f), 0.f, Vec3(1.f, 1.f, 1.f), true, true, false);
 
     // ================ PLAYER BALL/PHYSICS BALL ===================
-    VisualObject* Ball = new OctahedronBall("Player", 4, playerStartPos, Vec3(0.f, 0.f, 0.f), 0.f, Vec3(0.5f, 0.5f, 0.5f), false, false);
+    //VisualObject* Ball = new OctahedronBall("Player", 4, playerStartPos, Vec3(0.f, 0.f, 0.f), 0.f, Vec3(0.5f, 0.5f, 0.5f), false, false);
     // =======================================================
 
-    VisualObject* Ball2 = new OctahedronBall("Small_Ball", 4, Vec3(3.f, -0.3f, 0.f), Vec3(0.f, 0.f, 0.f), 0.f, Vec3(0.2f, 0.2f, 0.2f), false, false);
+    //VisualObject* Ball2 = new OctahedronBall("Small_Ball", 4, Vec3(3.f, -0.3f, 0.f), Vec3(0.f, 0.f, 0.f), 0.f, Vec3(0.2f, 0.2f, 0.2f), false, false);
 
     // OBJ-Objects
     //VisualObject* Doughnut = new ObjMesh("Doughnut", "../GSOpenGL2019/Data/Models/Doughnut.obj", Vec3(3.f, 1.f, 0.f), Vec3(0.f, 0.f, 1.f), 10.f, Vec3(1.f, 1.f, 1.f), true, true);
@@ -173,10 +173,10 @@ void RenderWindow::init()
     VisualObject* Spiller = new ObjMesh("SpillerHelikopter", "../GSOpenGL2019/Data/Models/Helikopter.obj", Vec3(-3.f, 5.f, 0.f), Vec3(0.f, 0.f, 1.f), 0.f, Vec3(1.f, 1.f, 1.f), false, false);
     VisualObject* Fiende = new ObjMesh("FiendeHelikopter", "../GSOpenGL2019/Data/Models/Helikopter.obj", Vec3(3.f, 1.f, 10.f), Vec3(0.f, 0.f, 1.f), 0.f, Vec3(1.f, 1.f, 1.f), false, false);
 
-    VisualObject* Stjerne01 = new ObjMesh("Sjerne01", "../GSOpenGL2019/Data/Models/Star.obj", Vec3(5.f, 5.f, 5.f), Vec3(0.f, 0.f, 1.f), 0.f, Vec3(1.f, 1.f, 1.f), true, false);
-    VisualObject* Stjerne02 = new ObjMesh("Sjerne01", "../GSOpenGL2019/Data/Models/Star.obj", Vec3(5.f, 5.f, 5.f), Vec3(0.f, 0.f, 1.f), 0.f, Vec3(1.f, 1.f, 1.f), true, false);
-    VisualObject* Stjerne03 = new ObjMesh("Sjerne01", "../GSOpenGL2019/Data/Models/Star.obj", Vec3(5.f, 5.f, 5.f), Vec3(0.f, 0.f, 1.f), 0.f, Vec3(1.f, 1.f, 1.f), true, false);
-    VisualObject* Stjerne04 = new ObjMesh("Sjerne01", "../GSOpenGL2019/Data/Models/Star.obj", Vec3(5.f, 5.f, 5.f), Vec3(0.f, 0.f, 1.f), 0.f, Vec3(1.f, 1.f, 1.f), true, false);
+    VisualObject* Stjerne01 = new ObjMesh("Sjerne01", "../GSOpenGL2019/Data/Models/Star.obj", Vec3(-40.f, 0.f, -40.f), Vec3(0.f, 0.f, 1.f), 0.f, Vec3(1.f, 1.f, 1.f), true, false);
+    VisualObject* Stjerne02 = new ObjMesh("Sjerne01", "../GSOpenGL2019/Data/Models/Star.obj", Vec3(-20.f, 0.f, 40.f), Vec3(0.f, 0.f, 1.f), 0.f, Vec3(1.f, 1.f, 1.f), true, false);
+    VisualObject* Stjerne03 = new ObjMesh("Sjerne01", "../GSOpenGL2019/Data/Models/Star.obj", Vec3(20.f, 0.f, -40.f), Vec3(0.f, 0.f, 1.f), 0.f, Vec3(1.f, 1.f, 1.f), true, false);
+    VisualObject* Stjerne04 = new ObjMesh("Sjerne01", "../GSOpenGL2019/Data/Models/Star.obj", Vec3(40.f, 0.f, 40.f), Vec3(0.f, 0.f, 1.f), 0.f, Vec3(1.f, 1.f, 1.f), true, false);
 
     mSpiller = Spiller;
     mFiende = Fiende;
@@ -210,24 +210,22 @@ void RenderWindow::init()
     static_cast<PhongShader*>(mShaderProgram[2])->setLight(static_cast<Light*>(lightSrc01));
 
     //Assigns an object to the interObj ptr.
-    interObj = Ball;
-    impactObj = Ball2;
+    //interObj = Ball;
+    //impactObj = Ball2;
     //path = Curve;
     //doorObj = Door;
     terrainObj = TerrainGraph;
 
     // Interactive object
-    if (interObj)
-    {
-        SceneObjects.push_back(interObj);
-        SceneObjects2.push_back(interObj);
-        SceneObjects3.push_back(interObj);
-    }
+//    if (interObj)
+//    {
+//        SceneObjects.push_back(interObj);
+//        SceneObjects2.push_back(interObj);
+//        SceneObjects3.push_back(interObj);
+//    }
 
     // ///////////////////////////////////////////////////////////////////////////////////////////////////////
     // Oblig 3 stuff
-    VisualObject* testCurve = new BSplineCurve();
-
     std::vector<float> testKnots;
     std::vector<Vec3> testPoints;
 
@@ -241,15 +239,15 @@ void RenderWindow::init()
     testKnots.push_back(1.f);
     testKnots.push_back(1.f);
 
-    testPoints.push_back(Vec3(1.f, 1.f, 1.f));
-    testPoints.push_back(Vec3(2.f, 2.f, 2.f));
-    testPoints.push_back(Vec3(3.f, 3.f, 3.f));
-    testPoints.push_back(Vec3(4.f, 4.f, 4.f));
+    testPoints.push_back(Vec3(-40.f, 0.f, -40.f));
+    testPoints.push_back(Vec3(-20.f, 0.f, 40.f));
+    testPoints.push_back(Vec3(20.f, 0.f, -40.f));
+    testPoints.push_back(Vec3(40.f, 0.f, 40.f));
 
+    VisualObject* testCurve = new BSplineCurve(testKnots, testPoints, 3);
     TheBSpline = static_cast<BSplineCurve*>(testCurve);
-    TheBSpline->setKnotsAndControlPoints(testKnots, testPoints);
 
-    DebugObjects.push_back(testCurve);
+    DebugObjects.push_back(static_cast<VisualObject*>(TheBSpline));
 
     // =====================================================
     // ++++++++++++++++++++++|Scene 1|++++++++++++++++++++++++
@@ -309,7 +307,7 @@ void RenderWindow::init()
     }
 
     //Setter egen farge på spiller ballen
-    interObj->mMaterial.mObjectColor = Vec3(1.f, 1.f, 0.f);
+    //interObj->mMaterial.mObjectColor = Vec3(1.f, 1.f, 0.f);
 
     ThePyramid->mMaterial.mObjectColor = Vec3(1.f, 0.f, 0.f);
 
@@ -367,7 +365,7 @@ void RenderWindow::init()
 
     CamLoc01 = Vec3(0.f, 5.f, 12.f);
     CamLoc02 = Vec3(8.f, 2.f, -6.f);
-    CamLoc03 = Vec3(0.f, 500.f, 250.f);
+    CamLoc03 = Vec3(0.f, 20.f, 10.f); //Vec3(0.f, 500.f, 250.f);
     CamLoc04 = Vec3(0.f, 0.f, 0.f);
     CamLoc05 = Vec3(0.f, 0.f, 0.f);
 
@@ -412,9 +410,9 @@ void RenderWindow::render()
         //const gs2019::Vector3D target (interObj->getPosition().x, interObj->getPosition().y, interObj->getPosition().z);
         const gs2019::Vector3D target (mSpiller->getPosition().x, mSpiller->getPosition().y, mSpiller->getPosition().z);
 
-        TheCamera->position.x = interObj->getPosition().x;
-        TheCamera->position.y = interObj->getPosition().y + 3.f;
-        TheCamera->position.z = interObj->getPosition().z + 3.f;
+        TheCamera->position.x = mSpiller->getPosition().x;
+        TheCamera->position.y = mSpiller->getPosition().y + 5.f;
+        TheCamera->position.z = mSpiller->getPosition().z - 25.f;
         TheCamera->lookAt(target);
     }
 
@@ -456,37 +454,37 @@ void RenderWindow::render()
     //---------------------------------------------------------------------------|Collision test|-----------------------------------------------------------------------
     //=======================================================================================================
 
-    const gs2019::Vector3D distance = interObj->getPosition() - impactObj->getPosition();
+//    const gs2019::Vector3D distance = interObj->getPosition() - impactObj->getPosition();
 
-    if (distance.length() < (interObj->getRadius() + impactObj->getRadius()))
-    {
-        bool objectMoveX = false;
-        bool objectMoveY = false;
+//    if (distance.length() < (interObj->getRadius() + impactObj->getRadius()))
+//    {
+//        bool objectMoveX = false;
+//        bool objectMoveY = false;
 
-        if ((interObj->getPosition().x < impactObj->getPosition().x) && !objectMoveX)
-        {
-            impactObj->move(0.01f, 0.f, 0.f, gs2019::Vector3D(0.f, 1.f, 0.f));
-            objectMoveX = true;
-        }
+//        if ((interObj->getPosition().x < impactObj->getPosition().x) && !objectMoveX)
+//        {
+//            impactObj->move(0.01f, 0.f, 0.f, gs2019::Vector3D(0.f, 1.f, 0.f));
+//            objectMoveX = true;
+//        }
 
-        if ((interObj->getPosition().x > impactObj->getPosition().x) && !objectMoveX)
-        {
-            impactObj->move(-0.01f, 0.f, 0.f, gs2019::Vector3D(0.f, 1.f, 0.f));
-            objectMoveX = true;
-        }
+//        if ((interObj->getPosition().x > impactObj->getPosition().x) && !objectMoveX)
+//        {
+//            impactObj->move(-0.01f, 0.f, 0.f, gs2019::Vector3D(0.f, 1.f, 0.f));
+//            objectMoveX = true;
+//        }
 
-        if ((interObj->getPosition().z < impactObj->getPosition().z) && !objectMoveY)
-        {
-            impactObj->move(0.f, 0.f, 0.01f, gs2019::Vector3D(0.f, 1.f, 0.f));
-            objectMoveY = true;
-        }
+//        if ((interObj->getPosition().z < impactObj->getPosition().z) && !objectMoveY)
+//        {
+//            impactObj->move(0.f, 0.f, 0.01f, gs2019::Vector3D(0.f, 1.f, 0.f));
+//            objectMoveY = true;
+//        }
 
-        if ((interObj->getPosition().z > impactObj->getPosition().z) && !objectMoveY)
-        {
-            impactObj->move(0.f, 0.f, -0.01f, gs2019::Vector3D(0.f, 1.f, 0.f));
-            objectMoveY = true;
-        }
-    }
+//        if ((interObj->getPosition().z > impactObj->getPosition().z) && !objectMoveY)
+//        {
+//            impactObj->move(0.f, 0.f, -0.01f, gs2019::Vector3D(0.f, 1.f, 0.f));
+//            objectMoveY = true;
+//        }
+//    }
 
 //    if ((interObj->getPosition().x > 3.f && interObj->getPosition().x < 9.f) && (interObj->getPosition().z > -7.f && interObj->getPosition().z < -1.f) && currentScene == 1)
 //    {
@@ -506,7 +504,10 @@ void RenderWindow::render()
     if (timeActive)
         time += 0.1f;
 
-    float curveDistance = MathLab::abs(cos(time*0.1f));
+    // OBLIG 3
+    float curveTime = MathLab::abs(cos(time*0.02f));
+    mFiende->setLocation(TheBSpline->travelAlongSpline(curveTime).x, TheBSpline->travelAlongSpline(curveTime).y, TheBSpline->travelAlongSpline(curveTime).z);
+
 
     if (debug)
     {
@@ -534,12 +535,12 @@ void RenderWindow::render()
     if (currentScene == 1)
     {
         // Sets the player y-axis value with barycentric coordinates
-        Vec3 tempVector{interObj->getPosition().x, 0.f, interObj->getPosition().z};
-        interObj->setHeight(terrainObj->findTargetHeight(tempVector) + interObj->radius);
+        Vec3 tempVector{mSpiller->getPosition().x, 0.f, mSpiller->getPosition().z};
+        mSpiller->setHeight(terrainObj->findTargetHeight(tempVector) + 25.f);
 
-        static_cast<OctahedronBall*>(interObj)->VertexA = terrainObj->vertexA;
-        static_cast<OctahedronBall*>(interObj)->VertexB = terrainObj->vertexB;
-        static_cast<OctahedronBall*>(interObj)->VertexC = terrainObj->vertexC;
+        //static_cast<OctahedronBall*>(interObj)->VertexA = terrainObj->vertexA;
+        //static_cast<OctahedronBall*>(interObj)->VertexB = terrainObj->vertexB;
+        //static_cast<OctahedronBall*>(interObj)->VertexC = terrainObj->vertexC;
 
         for (auto it = SceneObjects2.begin(); it != SceneObjects2.end(); it++)
         {
@@ -634,7 +635,7 @@ void RenderWindow::smoothTerrain()
 void RenderWindow::resetPlayer()
 {
     static_cast<OctahedronBall*>(interObj)->stopVelocity();
-    interObj->setLocation(0.f, 0.f, 0.f);
+    //interObj->setLocation(0.f, 0.f, 0.f);
 }
 
 //The way this is set up is that we start the clock before doing the draw call,
@@ -749,7 +750,7 @@ void RenderWindow::keyReleaseEvent(QKeyEvent *event)
 
 void RenderWindow::processInputs()
 {
-    float moveSpeed = 0.05f;
+    float moveSpeed = 0.15f;
     float rotationSpeed = 5.f;
 
     for (auto i = pressedKeys.begin(); i != pressedKeys.end(); i++)
@@ -759,25 +760,25 @@ void RenderWindow::processInputs()
             if (*i == Qt::Key_D)
             {
                 //interObj->move(moveSpeed, 0.f, 0.f, gs2019::Vector3D(0.f, 1.f, 0.f));
-                mSpiller->move(moveSpeed, 0.f, 0.f, gs2019::Vector3D(0.f, 1.f, 0.f));
+                mSpiller->move(-moveSpeed, 0.f, 0.f, gs2019::Vector3D(0.f, 1.f, 0.f));
             }
 
             if (*i == Qt::Key_A)
             {
                 //interObj->move(-moveSpeed, 0.f, 0.f, gs2019::Vector3D(0.f, 1.f, 0.f));
-                mSpiller->move(-moveSpeed, 0.f, 0.f, gs2019::Vector3D(0.f, 1.f, 0.f));
+                mSpiller->move(moveSpeed, 0.f, 0.f, gs2019::Vector3D(0.f, 1.f, 0.f));
             }
 
             if (*i == Qt::Key_W)
             {
                 //interObj->move(0.f, 0.f, -moveSpeed, gs2019::Vector3D(0.f, 1.f, 0.f));
-                mSpiller->move(0.f, 0.f, -moveSpeed, gs2019::Vector3D(0.f, 1.f, 0.f));
+                mSpiller->move(0.f, 0.f, moveSpeed, gs2019::Vector3D(0.f, 1.f, 0.f));
             }
 
             if (*i == Qt::Key_S)
             {
                 //interObj->move(0.f, 0.f, moveSpeed, gs2019::Vector3D(0.f, 1.f, 0.f));
-                mSpiller->move(0.f, 0.f, moveSpeed, gs2019::Vector3D(0.f, 1.f, 0.f));
+                mSpiller->move(0.f, 0.f, -moveSpeed, gs2019::Vector3D(0.f, 1.f, 0.f));
             }
         }
     }
