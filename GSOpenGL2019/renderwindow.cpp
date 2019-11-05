@@ -7,6 +7,7 @@
 #include <QKeyEvent>
 #include <QStatusBar>
 #include <QDebug>
+#include "Npc.h"
 
 #include "shader.h"
 #include "mainwindow.h"
@@ -248,6 +249,8 @@ void RenderWindow::init()
 
     DebugObjects.push_back(static_cast<VisualObject*>(TheBSpline));
 
+    FiendeStatemachine = new Npc(TheBSpline, Fiende);
+
     // =====================================================
     // ++++++++++++++++++++++|Scene 1|++++++++++++++++++++++++
     // =====================================================
@@ -383,6 +386,9 @@ void RenderWindow::init()
 ///Called each frame - doing the rendering
 void RenderWindow::render()
 {
+
+    FiendeStatemachine->update();
+
     processInputs();
 
     mTimeStart.restart(); //restart FPS clock
@@ -578,7 +584,6 @@ void RenderWindow::render()
             mFiende->move(0.f, -0.1f, 0.f, gs2019::Vector3D(0.f, 1.f, 0.f));
         }
     }
-
 
 
     if (debug)

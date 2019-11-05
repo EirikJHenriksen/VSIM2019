@@ -9,7 +9,7 @@ graph::graph(bool itDoesNothing)
     //loadLASData("../GSOpenGL2019/Data/MapData/godoynes_simplified.txt");
 
     // Read generated mesh file.
-    readFromFile("../GSOpenGL2019/Data/MapData/GodoynesMesh.nei");
+    //readFromFile("../GSOpenGL2019/Data/MapData/GodoynesMesh.nei");
     mMatrix.setToIdentity();
 }
 
