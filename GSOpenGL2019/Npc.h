@@ -2,10 +2,10 @@
 #define NPC_H
 
 #include "visualobject.h"
-//#include "bsplinecurve.h"
+#include "bsplinecurve.h"
 #include <queue>
 
-class BSplineCurve;
+//class BSplineCurve;
 
 // We use the concepts event, notification and transition in this context.
 enum NPCstates{PATROL, LEARN};
@@ -51,6 +51,8 @@ class Npc : public VisualObject
     // viktig å ikke endre endepunktene
 
 public:
+
+    bool controllPointsChanged{false};
     Npc(BSplineCurve* inputCurve, VisualObject* owner);
 
     void update();

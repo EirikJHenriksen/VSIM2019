@@ -519,7 +519,6 @@ void RenderWindow::render()
         {
             mStjerne01->setLocation(0.f, -1000.f, 0.f);
             mStjerne01Taken = true;
-            ctrlPointsChanged = true;
 
             TheBSpline->remainingPoints -= 1;
         }
@@ -528,7 +527,6 @@ void RenderWindow::render()
         {
             mStjerne02->setLocation(0.f, -1000.f, 0.f);
             mStjerne02Taken = true;
-            ctrlPointsChanged = true;
 
             TheBSpline->remainingPoints -= 1;
         }
@@ -537,7 +535,6 @@ void RenderWindow::render()
         {
             mStjerne03->setLocation(0.f, -1000.f, 0.f);
             mStjerne03Taken = true;
-            ctrlPointsChanged = true;
 
             TheBSpline->remainingPoints -= 1;
         }
@@ -546,14 +543,13 @@ void RenderWindow::render()
         {
             mStjerne04->setLocation(0.f, -1000.f, 0.f);
             mStjerne04Taken = true;
-            ctrlPointsChanged = true;
 
             TheBSpline->remainingPoints -= 1;
         }
 
         std::vector<Vec3> ctrlPoints;
 
-        if (ctrlPointsChanged)
+        if (FiendeStatemachine->controllPointsChanged)
         {
             // Lastes inn uansett! (Startpunkt)
             ctrlPoints.push_back(Vec3(-40.f, 0.f, -40.f));
@@ -587,6 +583,7 @@ void RenderWindow::render()
             }
 
             TheBSpline->updateVertecies();
+            FiendeStatemachine->controllPointsChanged = false;
         }
 
         if ((mFiende->getPosition() - mSpiller->getPosition()).length() < 1.f || mSpillerDead)

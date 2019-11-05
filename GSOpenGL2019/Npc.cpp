@@ -75,13 +75,10 @@ void Npc::learn()
 
     checkCurve();
 
-
     while (!notification_queue.empty())
     {
-
         notify(notification_queue.front());
         notification_queue.pop();
-
     }
 
     state = PATROL;
@@ -103,7 +100,7 @@ void Npc::notify(int notification)
     switch(notification_queue.front())
     {
     case ITEM_TAKEN:
-        qDebug() << "ITEM TAKEN!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!";
+        controllPointsChanged = true;
         //remove controlpoint and one (the middle) internal knot
         break;
     case ENDPOINT_ARRIVED:
