@@ -520,6 +520,8 @@ void RenderWindow::render()
             mStjerne01->setLocation(0.f, -1000.f, 0.f);
             mStjerne01Taken = true;
             ctrlPointsChanged = true;
+
+            TheBSpline->remainingPoints -= 1;
         }
 
         if ((mStjerne02->getPosition() - mSpiller->getPosition()).length() < 1.f)
@@ -527,6 +529,8 @@ void RenderWindow::render()
             mStjerne02->setLocation(0.f, -1000.f, 0.f);
             mStjerne02Taken = true;
             ctrlPointsChanged = true;
+
+            TheBSpline->remainingPoints -= 1;
         }
 
         if ((mStjerne03->getPosition() - mSpiller->getPosition()).length() < 1.f)
@@ -534,6 +538,8 @@ void RenderWindow::render()
             mStjerne03->setLocation(0.f, -1000.f, 0.f);
             mStjerne03Taken = true;
             ctrlPointsChanged = true;
+
+            TheBSpline->remainingPoints -= 1;
         }
 
         if ((mStjerne04->getPosition() - mSpiller->getPosition()).length() < 1.f)
@@ -541,6 +547,8 @@ void RenderWindow::render()
             mStjerne04->setLocation(0.f, -1000.f, 0.f);
             mStjerne04Taken = true;
             ctrlPointsChanged = true;
+
+            TheBSpline->remainingPoints -= 1;
         }
 
         std::vector<Vec3> ctrlPoints;
@@ -554,10 +562,18 @@ void RenderWindow::render()
             {
                 ctrlPoints.push_back(Vec3(-20.f, 0.f, 40.f));
             }
+            else
+            {
+                ctrlPoints.push_back(Vec3(-40.f, 0.f, -40.f));
+            }
 
-            if (!mStjerne02Taken)
+            if (!mStjerne03Taken)
             {
                 ctrlPoints.push_back(Vec3(20.f, 0.f, -40.f));
+            }
+            else
+            {
+                ctrlPoints.push_back(Vec3(40.f, 0.f, 40.f));
             }
 
             // Lastes inn uansett! (Sluttpunkt)
@@ -569,6 +585,8 @@ void RenderWindow::render()
             {
                 mFiendeDead = true;
             }
+
+            TheBSpline->updateVertecies();
         }
 
         if ((mFiende->getPosition() - mSpiller->getPosition()).length() < 1.f || mSpillerDead)
@@ -834,7 +852,7 @@ void RenderWindow::processInputs()
 
     for (auto i = pressedKeys.begin(); i != pressedKeys.end(); i++)
     {
-        if (timeActive)
+        if (timeActive && !mSpillerDead)
         {
             if (*i == Qt::Key_D)
             {

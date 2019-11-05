@@ -16,8 +16,12 @@ public:
     ~BSplineCurve() override;
 
     void setKnotsAndControlPoints(std::vector<float> knots, std::vector<Vec3> points);
+    void updateVertecies();
 
     Vec3 travelAlongSpline(float time);
+
+    void setDegree(int newDegree) { d = newDegree; }
+    int getDegree() { return d; }
 
     Vec3 evaluateBSpline(int my, float x);
     Vec3 evaluateBSpline(int degree, int startKnot, float x);
@@ -28,6 +32,9 @@ public:
     void draw() override;//(GLint positionAttribute, GLint colorAttribute, GLint textureAttribute=-1);
 
     Vec3 b[4];      // control points
+
+    int remainingPoints{4};
+
 private:
 
     int n;          //n = number of knots

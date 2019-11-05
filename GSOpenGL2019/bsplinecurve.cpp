@@ -10,10 +10,21 @@ BSplineCurve::BSplineCurve(std::vector<float> knots, std::vector<Vec3> controlpo
     d = degree;
 
     setKnotsAndControlPoints(knots, controlpoints);
+    updateVertecies();
+}
 
+BSplineCurve::~BSplineCurve()
+{
+
+}
+
+void BSplineCurve::updateVertecies()
+{
+    // Creates vertecies so you can see the BSpline
     Vertex temp(Vec3(0.f, 0.f, 0.f), Vec3(1.f, 0.f, 0.f), Vec2(0.f, 0.f));
 
-    // Creates vertecies so you can see the BSpline
+    mVertices.clear();
+
     float SplineResoulution{100.f};
     for (unsigned int i = 0; i < SplineResoulution; i++)
     {
@@ -26,11 +37,8 @@ BSplineCurve::BSplineCurve(std::vector<float> knots, std::vector<Vec3> controlpo
     mMatrix.setToIdentity();
     mMatrix.translate(0.f, 0.f, 0.f);
     mMatrix.scale(1.f, 1.f, 1.f);
-}
 
-BSplineCurve::~BSplineCurve()
-{
-
+    init();
 }
 
 void BSplineCurve::setKnotsAndControlPoints(std::vector<float> knots, std::vector<Vec3> points)
