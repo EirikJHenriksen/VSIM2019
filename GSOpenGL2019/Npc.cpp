@@ -33,7 +33,7 @@ void Npc::patrol()
         // if far from both endpoints
         if (((enemy->getPosition() - bSplineCurve->b[0]).length() > collisionDistance) && ((enemy->getPosition() - bSplineCurve->b[3]).length() > collisionDistance))
         {
-            qDebug() << "distant" << time;
+            //qDebug() << "distant" << time;
             isStillNearEndpoint = false;
         }
     }
@@ -70,7 +70,7 @@ void Npc::patrol()
 
 void Npc::learn()
 {
-    qDebug() << "learn()";
+    //qDebug() << "learn()";
     isStillNearEndpoint = true;
 
     checkCurve();
@@ -86,12 +86,17 @@ void Npc::learn()
 
 void Npc::checkCurve()
 {
-    qDebug() << "checking";
-    if (bSplineCurve->remainingPoints < curvePoints)
+    //qDebug() << "checking";
+    if (bSplineCurve->remainingPoints == 0)
+    {
+        notification_queue.push(ALL_ITEMS_COLLECTED);
+        qDebug() << "YOU WIN THE GAME!";
+    }
+    else if (bSplineCurve->remainingPoints < curvePoints)
     {
         curvePoints = bSplineCurve->remainingPoints;
         notification_queue.push(ITEM_TAKEN);
-        qDebug() << "curve point removed";
+        //qDebug() << "curve point removed";
     }
 }
 

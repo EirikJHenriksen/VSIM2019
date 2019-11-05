@@ -16,7 +16,7 @@ enum NPCevents{NOTHING, ENDPOINT_ARRIVED, ITEM_TAKEN, ALL_ITEMS_COLLECTED};
 typedef gs2019::Vector3D Vec3;
 class Npc : public VisualObject
 {
-    float collisionDistance{0.5f};
+    float collisionDistance{0.1f};
     GLfloat time = 0.f;
     bool isStillNearEndpoint{false};
     bool isGameRunning{true};

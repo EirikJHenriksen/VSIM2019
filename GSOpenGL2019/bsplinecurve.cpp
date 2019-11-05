@@ -26,7 +26,7 @@ void BSplineCurve::updateVertecies()
     mVertices.clear();
 
     float SplineResoulution{100.f};
-    for (unsigned int i = 0; i < SplineResoulution; i++)
+    for (unsigned int i = 0; i <= SplineResoulution; i++)
     {
         temp.set_xyz(evaluateBSpline(d, i/SplineResoulution).x, evaluateBSpline(d, i/SplineResoulution).y, evaluateBSpline(d, i/SplineResoulution).z);
         mVertices.push_back(temp);

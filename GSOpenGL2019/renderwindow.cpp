@@ -172,7 +172,7 @@ void RenderWindow::init()
     // ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     // [VSIM TING!!!]
     VisualObject* Spiller = new ObjMesh("SpillerHelikopter", "../GSOpenGL2019/Data/Models/Helikopter.obj", Vec3(-3.f, 0.f, -20.f), Vec3(0.f, 0.f, 1.f), 0.f, Vec3(1.f, 1.f, 1.f), false, false);
-    VisualObject* Fiende = new ObjMesh("FiendeHelikopter", "../GSOpenGL2019/Data/Models/Helikopter.obj", Vec3(3.f, 0.f, 10.f), Vec3(0.f, 0.f, 1.f), 0.f, Vec3(1.f, 1.f, 1.f), false, false);
+    VisualObject* Fiende = new ObjMesh("FiendeHelikopter", "../GSOpenGL2019/Data/Models/Helikopter.obj", Vec3(3.f, 0.f, 10.f), Vec3(0.f, 1.f, 0.f), 90.f, Vec3(1.f, 1.f, 1.f), false, false);
 
     VisualObject* Stjerne01 = new ObjMesh("Sjerne01", "../GSOpenGL2019/Data/Models/Star.obj", Vec3(-40.f, 0.f, -40.f), Vec3(0.f, 0.f, 1.f), 0.f, Vec3(1.f, 1.f, 1.f), true, false);
     VisualObject* Stjerne02 = new ObjMesh("Sjerne01", "../GSOpenGL2019/Data/Models/Star.obj", Vec3(-20.f, 0.f, 40.f), Vec3(0.f, 0.f, 1.f), 0.f, Vec3(1.f, 1.f, 1.f), true, false);
