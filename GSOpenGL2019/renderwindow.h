@@ -91,7 +91,7 @@ private:
     bool cameraInHouse = false;
 
     std::vector<VisualObject*> DebugObjects;
-    bool debug = false;
+    bool debug{true};
 
     std::vector<VisualObject*> SceneObjects;
     std::vector<VisualObject*> SceneObjects2;
@@ -107,7 +107,6 @@ private:
 
 
     // Important/dynamic objects (VSIM):
-
     BSplineCurve* TheBSpline;
 
     VisualObject* mSpiller{nullptr};
