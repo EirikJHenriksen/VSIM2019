@@ -2,10 +2,10 @@
 #define NPC_H
 
 #include "visualobject.h"
-#include "bsplinecurve.h"
+//#include "bsplinecurve.h"
 #include <queue>
 
-//class BSplineCurve;
+class BSplineCurve;
 
 // We use the concepts event, notification and transition in this context.
 enum NPCstates{PATROL, LEARN};
@@ -16,10 +16,15 @@ enum NPCevents{NOTHING, ENDPOINT_ARRIVED, ITEM_TAKEN, ALL_ITEMS_COLLECTED};
 typedef gs2019::Vector3D Vec3;
 class Npc : public VisualObject
 {
+    float collisionDistance{1.f};
+    int nextEndpoint{0};
+    GLfloat time = 0.f;
+
+    VisualObject* enemy{nullptr};
+
     NPCstates state{PATROL};
     NPCevents event{NOTHING};
 
-    void update();
     bool gameIsRunning{true};
 
     BSplineCurve* bSplineCurve;
@@ -29,6 +34,10 @@ class Npc : public VisualObject
     void notify(int notification);
 
     std::queue<int> notification_queue;
+
+    // to check the b-spline curve
+    void checkCurve();
+    int curvePoints{0};
 
     float elapsedTime;
     // B-Spline kurven har en skjøtvektor, f.eks (0, 0, 0, 1, 2, 3, 3, 3)
@@ -41,7 +50,9 @@ class Npc : public VisualObject
     // viktig å ikke endre endepunktene
 
 public:
-    Npc(BSplineCurve* inputCurve);
+    Npc(BSplineCurve* inputCurve, VisualObject* owner);
+
+    void update();
 
     // FSM Part
     void patrol();

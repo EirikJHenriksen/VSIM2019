@@ -7,6 +7,7 @@
 #include <QKeyEvent>
 #include <QStatusBar>
 #include <QDebug>
+#include "Npc.h"
 
 #include "shader.h"
 #include "mainwindow.h"
@@ -249,6 +250,8 @@ void RenderWindow::init()
 
     DebugObjects.push_back(static_cast<VisualObject*>(TheBSpline));
 
+    FiendeStatemachine = new Npc(TheBSpline, Fiende);
+
     // =====================================================
     // ++++++++++++++++++++++|Scene 1|++++++++++++++++++++++++
     // =====================================================
@@ -384,6 +387,9 @@ void RenderWindow::init()
 ///Called each frame - doing the rendering
 void RenderWindow::render()
 {
+
+    FiendeStatemachine->update();
+
     processInputs();
 
     mTimeStart.restart(); //restart FPS clock
@@ -501,12 +507,12 @@ void RenderWindow::render()
 
     // Object moving along curve/spline
     // Updates time variable
-    if (timeActive)
-        time += 0.1f;
+//    if (timeActive)
+//        time += 0.1f;
 
     // OBLIG 3
-    float curveTime = MathLab::abs(cos(time*0.02f));
-    mFiende->setLocation(TheBSpline->travelAlongSpline(curveTime).x, TheBSpline->travelAlongSpline(curveTime).y, TheBSpline->travelAlongSpline(curveTime).z);
+//    float curveTime = MathLab::abs(cos(time*0.02f));
+//    mFiende->setLocation(TheBSpline->travelAlongSpline(curveTime).x, TheBSpline->travelAlongSpline(curveTime).y, TheBSpline->travelAlongSpline(curveTime).z);
 
 
     if (debug)

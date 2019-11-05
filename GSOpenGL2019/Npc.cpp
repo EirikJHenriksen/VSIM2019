@@ -1,57 +1,95 @@
 #include "Npc.h"
+#include "bsplinecurve.h"
 
-//Npc::Npc(BSplineCurve* inputCurve)
-//{
-//    bSplineCurve = inputCurve;
-//}
+Npc::Npc(BSplineCurve* inputCurve, VisualObject* owner)
+{
+    bSplineCurve = inputCurve;
+    enemy = owner;
+}
 
 void Npc::update()
 {
-    while (gameIsRunning)
-    {
-        if (state == PATROL)
-            patrol();
-        if (state == LEARN)
-            learn();
-    }
+    if (state == PATROL)
+        patrol();
+    if (state == LEARN)
+        learn();
 }
 
 void Npc::patrol()
 {
-    //Vec3 position = deBoor(t)
-    //draw NPC
+    // move
+    time += 0.1f;
+    float curveTime = MathLab::abs(cos(time*0.02f));
+    qDebug() << "curveTime" << curveTime;
+    enemy->setLocation(bSplineCurve->travelAlongSpline(curveTime).x, bSplineCurve->travelAlongSpline(curveTime).y, bSplineCurve->travelAlongSpline(curveTime).z);
 
-    if (ENDPOINT_ARRIVED)
-        //notify(ENDPOINT_ARRIVED);
-                state = LEARN;
+    //if (ENDPOINT_ARRIVED)
+    //notify(ENDPOINT_ARRIVED);
 
-//                if (item collected)
-//                notify(control_point_index)
+    // at endpoint?
+    if ((enemy->getPosition()) - (bSplineCurve->b[nextEndpoint]) < collisionDistance)
+    {
+        notification_queue.push(ENDPOINT_ARRIVED);
+        state = LEARN;
+    }
 
-//                if (player detected)
-//                notify(player_position)
-//                npc_state = LEARN
 
-//                else if (obstacle detected)
-//                notify(obstacle_position, control_point_index)
-//                npc_state = LEARN
+    //                if (item collected)
+    //                notify(control_point_index)
 
-//                else
-//                previous_position = position;
+    //                if (player detected)
+    //                notify(player_position)
+    //                npc_state = LEARN
+
+    //                else if (obstacle detected)
+    //                notify(obstacle_position, control_point_index)
+    //                npc_state = LEARN
+
+    //                else
+    //                previous_position = position;
 }
 
-void Npc::learn() {
-    if (ITEM_TAKEN)
+void Npc::learn()
+{
+    if (nextEndpoint == bSplineCurve->b->length())
     {
-        //remove controlpoint and one (the middle) internal knot
+        nextEndpoint = 0;
     }
-    if (ENDPOINT_ARRIVED)
+    else
     {
-        //build new path
-        //npc_state = PATROL
+        nextEndpoint = bSplineCurve->b->length();
     }
-    if (ALL_ITEMS_COLLECTED)
+
+    qDebug() << "learn()";
+    if (!notification_queue.empty())
     {
-        //stop
+        notification_queue.pop();
+        //    if (ITEM_TAKEN)
+        //    {
+        //        //remove controlpoint and one (the middle) internal knot
+        //    }
+        //    if (ENDPOINT_ARRIVED)
+        //    {
+        //        //build new path
+        //        //npc_state = PATROL
+        //    }
+        //    if (ALL_ITEMS_COLLECTED)
+        //    {
+        //        //stop
+        //    }
+    }
+    else // queue empty
+    {
+        state = PATROL;
+    }
+}
+
+void Npc::checkCurve()
+{
+    if (bSplineCurve->b->length() < curvePoints)
+    {
+        curvePoints = bSplineCurve->b->length();
+        notification_queue.push(ITEM_TAKEN);
+        qDebug() << "curve point removed";
     }
 }

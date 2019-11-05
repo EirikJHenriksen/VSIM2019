@@ -26,8 +26,10 @@ public:
 
     void init() override;//VertexBufferObjects();
     void draw() override;//(GLint positionAttribute, GLint colorAttribute, GLint textureAttribute=-1);
-private:
+
     Vec3 b[4];      // control points
+private:
+
     int n;          //n = number of knots
     int d;          //d = degree
     std::vector<float> t;   // knots

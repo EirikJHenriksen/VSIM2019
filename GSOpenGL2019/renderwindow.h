@@ -30,6 +30,7 @@
 #include "light.h"
 #include "bsplinecurve.h"
 
+class Npc;
 class QOpenGLContext;
 class Shader;
 class MainWindow;
@@ -75,6 +76,8 @@ private slots:
 
 private:
     void init();
+
+    Npc* FiendeStatemachine{nullptr};
 
     //Camera
     Camera* TheCamera;
