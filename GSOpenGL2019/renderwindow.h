@@ -94,7 +94,7 @@ private:
     bool cameraInHouse = false;
 
     std::vector<VisualObject*> DebugObjects;
-    bool debug{true};
+    bool debug{false};
 
     std::vector<VisualObject*> SceneObjects;
     std::vector<VisualObject*> SceneObjects2;
